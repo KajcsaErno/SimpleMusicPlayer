@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3E2723"
+    android:orientation="vertical"
+    tools:context="com.example.android.simplemusicplayer.MainActivity">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginRight="42dp"
+        android:layout_marginTop="42dp"
+        android:adjustViewBounds="true"
+        android:background="#4E342E"
+        android:maxHeight="150dp"
+        android:padding="22dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/note_24074_1280" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingBottom="22dp"
+        android:paddingTop="22dp"
+        android:text="LP - Lost on You"
+        android:textColor="@android:color/white"
+        android:textSize="24sp" />
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Icon made by Smashicon from www.flaticon.com -->
+        <ImageView
+            android:id="@+id/minus_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_weight="1"
+            android:src="@drawable/minus_symbol" />
+
+        <!-- Icon made by Freepik from www.flaticon.com -->
+        <ImageView
+            android:id="@+id/like_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:src="@drawable/like" />
+
+        <!-- Icon made by Minh Hoang from www.flaticon.com -->
+        <ImageView
+            android:id="@+id/plus_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="22dp"
+            android:layout_weight="1"
+            android:src="@drawable/plus" />
+
+
+    </LinearLayout>
+
+    <SeekBar
+        android:id="@+id/seek_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/skip_previous_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:src="@drawable/ic_skip_previous_white_36dp" />
+
+        <ImageView
+            android:id="@+id/fast_rewind_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:src="@drawable/ic_fast_rewind_white_36dp" />
+
+        <ImageView
+            android:id="@+id/play_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_play_arrow_white_36dp" />
+
+        <ImageView
+            android:id="@+id/fast_forward_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:src="@drawable/ic_fast_forward_white_36dp" />
+
+        <ImageView
+            android:id="@+id/skip_next_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:src="@drawable/ic_skip_next_white_36dp" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

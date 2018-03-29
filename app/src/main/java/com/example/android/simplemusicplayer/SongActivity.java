@@ -121,57 +121,72 @@ public class SongActivity extends AppCompatActivity {
                     mMediaPlayer.setOnCompletionListener(mCompletionListener);
 
 
-
                     //setting the play button to pause
                     mFooterPlayIcon.setImageResource(R.drawable.ic_pause_white_36dp);
+
+                    //changing the background color when a music is selected
                     mListView.setBackgroundColor(Color.parseColor("#00FF00"));
+
+                    //Text Scrolling Effect
+                    mFooterTextView.setSelected(true);
 
                     //Updating the footer song name and image
                     if (songs.get(0) == songs.get(position)) {
                         mFooterImage.setImageResource(R.drawable.rafaga);
                         mFooterTextView.setText("Mentirosa - Ráfaga");
 
-                    }if (songs.get(1) == songs.get(position)) {
+                    }
+                    if (songs.get(1) == songs.get(position)) {
                         mFooterImage.setImageResource(R.drawable.lp);
                         mFooterTextView.setText("LP - Lost On You");
 
-                    } if (songs.get(2) == songs.get(position)) {
+                    }
+                    if (songs.get(2) == songs.get(position)) {
                         mFooterImage.setImageResource(R.drawable.stay_high);
                         mFooterTextView.setText("Tove Lo - Stay High ft. Hippie Sabotage");
 
-                    } if (songs.get(3) == songs.get(position)) {
+                    }
+                    if (songs.get(3) == songs.get(position)) {
                         mFooterImage.setImageResource(R.drawable.alt_j);
                         mFooterTextView.setText("alt-J - Something Good");
 
-                    } if (songs.get(4) == songs.get(position)) {
+                    }
+                    if (songs.get(4) == songs.get(position)) {
                         mFooterImage.setImageResource(R.drawable.greenday);
                         mFooterTextView.setText("Green Day - Boulevard Of Broken Dreams");
 
-                    } if (songs.get(5) == songs.get(position)) {
+                    }
+                    if (songs.get(5) == songs.get(position)) {
                         mFooterImage.setImageResource(R.drawable.little_green_bag);
                         mFooterTextView.setText("George Baker - Little Green Bag");
 
-                    } if (songs.get(6) == songs.get(position)) {
+                    }
+                    if (songs.get(6) == songs.get(position)) {
                         mFooterImage.setImageResource(R.drawable.american_money);
                         mFooterTextView.setText("BØRNS - American Money");
 
-                    } if (songs.get(7) == songs.get(position)) {
+                    }
+                    if (songs.get(7) == songs.get(position)) {
                         mFooterImage.setImageResource(R.drawable.false_alarm);
                         mFooterTextView.setText("The Weeknd - False Alarm");
 
-                    } if (songs.get(8) == songs.get(position)) {
+                    }
+                    if (songs.get(8) == songs.get(position)) {
                         mFooterImage.setImageResource(R.drawable.lifted_up);
                         mFooterTextView.setText("Passion Pit - Lifted Up (1985");
 
-                    }if (songs.get(9) == songs.get(position)) {
+                    }
+                    if (songs.get(9) == songs.get(position)) {
                         mFooterImage.setImageResource(R.drawable.sweet_dreams);
                         mFooterTextView.setText("Sweet Dreams Are Made Of This - X Men Apocalypse Quicksilver Theme Song");
 
-                    } if (songs.get(10) == songs.get(position)) {
+                    }
+                    if (songs.get(10) == songs.get(position)) {
                         mFooterImage.setImageResource(R.drawable.sky_full_of_stars);
                         mFooterTextView.setText("Coldplay - A Sky Full Of Stars");
 
-                    }if (songs.get(11) == songs.get(position)) {
+                    }
+                    if (songs.get(11) == songs.get(position)) {
                         mFooterImage.setImageResource(R.drawable.break_the_rules);
                         mFooterTextView.setText("Charli XCX - Break The Rules");
                     }
@@ -191,7 +206,7 @@ public class SongActivity extends AppCompatActivity {
                 if (mMediaPlayer.isPlaying()) {
                     mMediaPlayer.pause();
                     mFooterPlayIcon.setImageResource(R.drawable.ic_play_arrow_white_36dp);
-                    mListView.setBackgroundColor(Color.parseColor( "#4E342E"));
+                    mListView.setBackgroundColor(Color.parseColor("#4E342E"));
 
 
                 } else {
@@ -229,7 +244,7 @@ public class SongActivity extends AppCompatActivity {
         mFooterSkipeNextIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                mMediaPlayer.setNextMediaPlayer();
+//                mMediaPlayer.setNextMediaPlayer(mMediaPlayer);
 
                 Toast.makeText(SongActivity.this, "Skips to the next song...", Toast.LENGTH_SHORT).show();
 
@@ -256,8 +271,8 @@ public class SongActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Intent to open the MusicPlayerActivity
-                    Intent openActivity = new Intent(SongActivity.this, MusicPlayerActivity.class);
-                    startActivity(openActivity);
+                Intent openActivity = new Intent(SongActivity.this, MusicPlayerActivity.class);
+                startActivity(openActivity);
             }
         });
 
@@ -267,6 +282,7 @@ public class SongActivity extends AppCompatActivity {
                 //Intent to open the MusicPlayerActivity
                 Intent openActivity = new Intent(SongActivity.this, MusicPlayerActivity.class);
                 startActivity(openActivity);
+
             }
         });
 

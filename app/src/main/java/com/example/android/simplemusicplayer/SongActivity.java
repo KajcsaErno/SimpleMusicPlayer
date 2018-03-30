@@ -42,7 +42,7 @@ public class SongActivity extends AppCompatActivity  {
             } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
                 // The AUDIOFOCUS_LOSS case means we've lost audio focus and
                 // Stop playback and clean up resources
-                releaseMediaPlayer();
+//                releaseMediaPlayer();
             }
         }
     };
@@ -136,8 +136,8 @@ public class SongActivity extends AppCompatActivity  {
                         mFooterTextView.setText(R.string.mentirosa);
 
                         //updating the image and text from now playing activity when user selects a item
-                        mMyInterface.updateImage(R.drawable.rafaga);
-                        mMyInterface.updateText(R.string.mentirosa);
+                    //    mMyInterface.updateImage(R.drawable.rafaga);
+                     //   mMyInterface.updateText(R.string.mentirosa);
                     }
                     if (songs.get(1) == songs.get(position)) {
                         //updating the image and text from footer when user selects a item
@@ -145,8 +145,8 @@ public class SongActivity extends AppCompatActivity  {
                         mFooterTextView.setText(R.string.lost_on_you);
 
                         //updating the image and text from now playing activity when user selects a item
-                        mMyInterface.updateImage(R.drawable.lp);
-                        mMyInterface.updateText(R.string.lost_on_you);
+//                        mMyInterface.updateImage(R.drawable.lp);
+//                        mMyInterface.updateText(R.string.lost_on_you);
 
                     }
                     if (songs.get(2) == songs.get(position)) {
@@ -155,8 +155,8 @@ public class SongActivity extends AppCompatActivity  {
                         mFooterTextView.setText(R.string.stay_high_remix);
 
                         //updating the image and text from now playing activity when user selects a item
-                        mMyInterface.updateImage(R.drawable.stay_high);
-                        mMyInterface.updateText(R.string.stay_high_remix);
+//                        mMyInterface.updateImage(R.drawable.stay_high);
+//                        mMyInterface.updateText(R.string.stay_high_remix);
 
                     }
                     if (songs.get(3) == songs.get(position)) {
@@ -165,8 +165,8 @@ public class SongActivity extends AppCompatActivity  {
                         mFooterTextView.setText(R.string.something_good);
 
                         //updating the image and text from now playing activity when user selects a item
-                        mMyInterface.updateImage(R.drawable.alt_j);
-                        mMyInterface.updateText(R.string.something_good);
+//                        mMyInterface.updateImage(R.drawable.alt_j);
+//                        mMyInterface.updateText(R.string.something_good);
 
                     }
                     if (songs.get(4) == songs.get(position)) {
@@ -175,8 +175,8 @@ public class SongActivity extends AppCompatActivity  {
                         mFooterTextView.setText(R.string.bulevard_of_broken_dreams);
 
                         //updating the image and text from now playing activity when user selects a item
-                        mMyInterface.updateImage(R.drawable.greenday);
-                        mMyInterface.updateText(R.string.bulevard_of_broken_dreams);
+//                        mMyInterface.updateImage(R.drawable.greenday);
+//                        mMyInterface.updateText(R.string.bulevard_of_broken_dreams);
 
                     }
                     if (songs.get(5) == songs.get(position)) {
@@ -185,8 +185,8 @@ public class SongActivity extends AppCompatActivity  {
                         mFooterTextView.setText(R.string.little_green_bag);
 
                         //updating the image and text from now playing activity when user selects a item
-                        mMyInterface.updateImage(R.drawable.little_green_bag);
-                        mMyInterface.updateText(R.string.little_green_bag);
+//                        mMyInterface.updateImage(R.drawable.little_green_bag);
+//                        mMyInterface.updateText(R.string.little_green_bag);
                     }
                     if (songs.get(6) == songs.get(position)) {
                         //updating the image and text from footer when user selects a item
@@ -195,7 +195,7 @@ public class SongActivity extends AppCompatActivity  {
 
                         //updating the image and text from now playing activity when user selects a item
 //                        mMyInterface.updateImage(R.drawable.american_money);
-                        mMyInterface.updateText(R.string.american_money);
+//                        mMyInterface.updateText(R.string.american_money);
 
                     }
                     if (songs.get(7) == songs.get(position)) {
@@ -204,8 +204,8 @@ public class SongActivity extends AppCompatActivity  {
                         mFooterTextView.setText(R.string.false_alarm);
 
                         //updating the image and text from now playing activity when user selects a item
-                        mMyInterface.updateImage(R.drawable.false_alarm);
-                        mMyInterface.updateText(R.string.false_alarm);
+//                        mMyInterface.updateImage(R.drawable.false_alarm);
+//                        mMyInterface.updateText(R.string.false_alarm);
 
                     }
                     if (songs.get(8) == songs.get(position)) {
@@ -214,8 +214,8 @@ public class SongActivity extends AppCompatActivity  {
                         mFooterTextView.setText(R.string.lifted_up);
 
                         //updating the image and text from now playing activity when user selects a item
-                        mMyInterface.updateImage(R.drawable.lifted_up);
-                        mMyInterface.updateText(R.string.lifted_up);
+//                        mMyInterface.updateImage(R.drawable.lifted_up);
+//                        mMyInterface.updateText(R.string.lifted_up);
 
                     }
                     if (songs.get(9) == songs.get(position)) {
@@ -224,8 +224,8 @@ public class SongActivity extends AppCompatActivity  {
                         mFooterTextView.setText(R.string.sweet_dreams);
 
                         //updating the image and text from now playing activity when user selects a item
-                        mMyInterface.updateImage(R.drawable.sweet_dreams);
-                        mMyInterface.updateText(R.string.sweet_dreams);
+//                        mMyInterface.updateImage(R.drawable.sweet_dreams);
+//                        mMyInterface.updateText(R.string.sweet_dreams);
 
                     }
                     if (songs.get(10) == songs.get(position)) {
@@ -234,8 +234,8 @@ public class SongActivity extends AppCompatActivity  {
                         mFooterTextView.setText(R.string.sky_full_of_stars);
 
                         //updating the image and text from now playing activity when user selects a item
-                        mMyInterface.updateImage(R.drawable.sky_full_of_stars);
-                        mMyInterface.updateText(R.string.sky_full_of_stars);
+//                        mMyInterface.updateImage(R.drawable.sky_full_of_stars);
+//                        mMyInterface.updateText(R.string.sky_full_of_stars);
 
                     }
                     if (songs.get(11) == songs.get(position)) {
@@ -244,8 +244,8 @@ public class SongActivity extends AppCompatActivity  {
                         mFooterTextView.setText(R.string.break_the_rules);
 
                         //updating the image and text from now playing activity when user selects a item
-                        mMyInterface.updateImage(R.drawable.break_the_rules);
-                        mMyInterface.updateText(R.string.break_the_rules);
+//                        mMyInterface.updateImage(R.drawable.break_the_rules);
+//                        mMyInterface.updateText(R.string.break_the_rules);
                     }
 
                 }

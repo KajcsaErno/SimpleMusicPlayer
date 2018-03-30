@@ -25,7 +25,7 @@
             android:parentActivityName=".MainActivity"/>
 
         <activity
-            android:name=".MusicPlayerActivity"
+            android:name=".NowPlayingActivity"
             android:label="@string/now_playing"
             android:parentActivityName=".SongActivity"/>
 

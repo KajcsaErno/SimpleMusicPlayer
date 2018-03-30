@@ -14,9 +14,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
-public class SongActivity extends AppCompatActivity {
+public class SongActivity extends AppCompatActivity  {
 
     //Handles playback of all the sound files
     public static MediaPlayer mMediaPlayer;
@@ -48,22 +50,30 @@ public class SongActivity extends AppCompatActivity {
     private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
-                        // Now that the sound file has finished playing, release the media player resources.
+            // Now that the sound file has finished playing, release the media player resources.
             //releaseMediaPlayer();
         }
     };
+
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.songs_list);
 
+       final MyInterface mMyInterface =  InterfaceHolder.getMyInterface();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         mFooterImage = findViewById(R.id.footer_image_view);
         mFooterTextView = findViewById(R.id.footer_text_view);
+
 
         mFooterSkipPreviousIcon = findViewById(R.id.footer_skip_previous_icon);
         mFooterPlayIcon = findViewById(R.id.footer_play_icon);
@@ -97,7 +107,7 @@ public class SongActivity extends AppCompatActivity {
                 releaseMediaPlayer();
 
                 Song song = songs.get(position);
-                int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+                int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
                 if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                     // We have audio focus now.
 
@@ -120,65 +130,122 @@ public class SongActivity extends AppCompatActivity {
                     //Text Scrolling Effect
                     mFooterTextView.setSelected(true);
 
-                    //Updating the footer song name and image
                     if (songs.get(0) == songs.get(position)) {
+                        //updating the image and text from footer when user selects a item
                         mFooterImage.setImageResource(R.drawable.rafaga);
                         mFooterTextView.setText(R.string.mentirosa);
 
+                        //updating the image and text from now playing activity when user selects a item
+                        mMyInterface.updateImage(R.drawable.rafaga);
+                        mMyInterface.updateText(R.string.mentirosa);
                     }
                     if (songs.get(1) == songs.get(position)) {
+                        //updating the image and text from footer when user selects a item
                         mFooterImage.setImageResource(R.drawable.lp);
                         mFooterTextView.setText(R.string.lost_on_you);
 
+                        //updating the image and text from now playing activity when user selects a item
+                        mMyInterface.updateImage(R.drawable.lp);
+                        mMyInterface.updateText(R.string.lost_on_you);
+
                     }
                     if (songs.get(2) == songs.get(position)) {
+                        //updating the image and text from footer when user selects a item
                         mFooterImage.setImageResource(R.drawable.stay_high);
                         mFooterTextView.setText(R.string.stay_high_remix);
 
+                        //updating the image and text from now playing activity when user selects a item
+                        mMyInterface.updateImage(R.drawable.stay_high);
+                        mMyInterface.updateText(R.string.stay_high_remix);
+
                     }
                     if (songs.get(3) == songs.get(position)) {
+                        //updating the image and text from footer when user selects a item
                         mFooterImage.setImageResource(R.drawable.alt_j);
                         mFooterTextView.setText(R.string.something_good);
 
+                        //updating the image and text from now playing activity when user selects a item
+                        mMyInterface.updateImage(R.drawable.alt_j);
+                        mMyInterface.updateText(R.string.something_good);
+
                     }
                     if (songs.get(4) == songs.get(position)) {
+                        //updating the image and text from footer when user selects a item
                         mFooterImage.setImageResource(R.drawable.greenday);
                         mFooterTextView.setText(R.string.bulevard_of_broken_dreams);
 
+                        //updating the image and text from now playing activity when user selects a item
+                        mMyInterface.updateImage(R.drawable.greenday);
+                        mMyInterface.updateText(R.string.bulevard_of_broken_dreams);
+
                     }
                     if (songs.get(5) == songs.get(position)) {
+                        //updating the image and text from footer when user selects a item
                         mFooterImage.setImageResource(R.drawable.little_green_bag);
                         mFooterTextView.setText(R.string.little_green_bag);
 
+                        //updating the image and text from now playing activity when user selects a item
+                        mMyInterface.updateImage(R.drawable.little_green_bag);
+                        mMyInterface.updateText(R.string.little_green_bag);
                     }
                     if (songs.get(6) == songs.get(position)) {
+                        //updating the image and text from footer when user selects a item
                         mFooterImage.setImageResource(R.drawable.american_money);
                         mFooterTextView.setText(R.string.american_money);
 
+                        //updating the image and text from now playing activity when user selects a item
+//                        mMyInterface.updateImage(R.drawable.american_money);
+                        mMyInterface.updateText(R.string.american_money);
+
                     }
                     if (songs.get(7) == songs.get(position)) {
+                        //updating the image and text from footer when user selects a item
                         mFooterImage.setImageResource(R.drawable.false_alarm);
                         mFooterTextView.setText(R.string.false_alarm);
 
+                        //updating the image and text from now playing activity when user selects a item
+                        mMyInterface.updateImage(R.drawable.false_alarm);
+                        mMyInterface.updateText(R.string.false_alarm);
+
                     }
                     if (songs.get(8) == songs.get(position)) {
+                        //updating the image and text from footer when user selects a item
                         mFooterImage.setImageResource(R.drawable.lifted_up);
                         mFooterTextView.setText(R.string.lifted_up);
 
+                        //updating the image and text from now playing activity when user selects a item
+                        mMyInterface.updateImage(R.drawable.lifted_up);
+                        mMyInterface.updateText(R.string.lifted_up);
+
                     }
                     if (songs.get(9) == songs.get(position)) {
+                        //updating the image and text from footer when user selects a item
                         mFooterImage.setImageResource(R.drawable.sweet_dreams);
                         mFooterTextView.setText(R.string.sweet_dreams);
 
+                        //updating the image and text from now playing activity when user selects a item
+                        mMyInterface.updateImage(R.drawable.sweet_dreams);
+                        mMyInterface.updateText(R.string.sweet_dreams);
+
                     }
                     if (songs.get(10) == songs.get(position)) {
+                        //updating the image and text from footer when user selects a item
                         mFooterImage.setImageResource(R.drawable.sky_full_of_stars);
                         mFooterTextView.setText(R.string.sky_full_of_stars);
 
+                        //updating the image and text from now playing activity when user selects a item
+                        mMyInterface.updateImage(R.drawable.sky_full_of_stars);
+                        mMyInterface.updateText(R.string.sky_full_of_stars);
+
                     }
                     if (songs.get(11) == songs.get(position)) {
+                        //updating the image and text from footer when user selects a item
                         mFooterImage.setImageResource(R.drawable.break_the_rules);
                         mFooterTextView.setText(R.string.break_the_rules);
+
+                        //updating the image and text from now playing activity when user selects a item
+                        mMyInterface.updateImage(R.drawable.break_the_rules);
+                        mMyInterface.updateText(R.string.break_the_rules);
                     }
 
                 }
@@ -193,17 +260,18 @@ public class SongActivity extends AppCompatActivity {
         mFooterPlayIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mMediaPlayer.isPlaying()) {
+                if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
                     mMediaPlayer.pause();
                     mFooterPlayIcon.setImageResource(R.drawable.ic_play_arrow_white_36dp);
                     mListView.setBackgroundColor(Color.parseColor("#4E342E"));
 
 
                 } else {
-                    mMediaPlayer.start();
-                    mFooterPlayIcon.setImageResource(R.drawable.ic_pause_white_36dp);
-                    mListView.setBackgroundColor(Color.parseColor("#00FF00"));
-
+                    if (mMediaPlayer != null) {
+                        mMediaPlayer.start();
+                        mFooterPlayIcon.setImageResource(R.drawable.ic_pause_white_36dp);
+                        mListView.setBackgroundColor(Color.parseColor("#00FF00"));
+                    }
                 }
             }
         });
@@ -220,12 +288,13 @@ public class SongActivity extends AppCompatActivity {
             @Override
             public boolean onLongClick(View view) {
                 long seek = 20000;
-                int duration = mMediaPlayer.getDuration();
-                if (seek < duration) {
-                    int skips = (int) (mMediaPlayer.getCurrentPosition() - seek);
-                    mMediaPlayer.seekTo(skips);
+                if (mMediaPlayer != null) {
+                    int duration = mMediaPlayer.getDuration();
+                    if (mMediaPlayer != null && seek < duration) {
+                        int skips = (int) (mMediaPlayer.getCurrentPosition() - seek);
+                        mMediaPlayer.seekTo(skips);
 
-
+                    }
                 }
                 return false;
             }
@@ -234,7 +303,7 @@ public class SongActivity extends AppCompatActivity {
         mFooterSkipeNextIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               //mMediaPlayer.setNextMediaPlayer();
+                //mMediaPlayer.setNextMediaPlayer();
 
                 Toast.makeText(SongActivity.this, "Skips to the next song...", Toast.LENGTH_SHORT).show();
 
@@ -246,11 +315,13 @@ public class SongActivity extends AppCompatActivity {
             @Override
             public boolean onLongClick(View view) {
                 long seek = 20000;
-                int duration = mMediaPlayer.getDuration();
-                if (seek < duration) {
-                    int skips = (int) (mMediaPlayer.getCurrentPosition() + seek);
-                    mMediaPlayer.seekTo(skips);
+                if (mMediaPlayer != null) {
+                    int duration = mMediaPlayer.getDuration();
+                    if (seek < duration) {
+                        int skips = (int) (mMediaPlayer.getCurrentPosition() + seek);
+                        mMediaPlayer.seekTo(skips);
 
+                    }
                 }
                 return false;
             }
@@ -260,8 +331,8 @@ public class SongActivity extends AppCompatActivity {
         mFooterImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent to open the MusicPlayerActivity
-                Intent openActivity = new Intent(SongActivity.this, MusicPlayerActivity.class);
+                //Intent to open the NowPlayingActivity
+                Intent openActivity = new Intent(SongActivity.this, NowPlayingActivity.class);
                 startActivity(openActivity);
             }
         });
@@ -269,8 +340,8 @@ public class SongActivity extends AppCompatActivity {
         mFooterTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent to open the MusicPlayerActivity
-                Intent openActivity = new Intent(SongActivity.this, MusicPlayerActivity.class);
+                //Intent to open the NowPlayingActivity
+                Intent openActivity = new Intent(SongActivity.this, NowPlayingActivity.class);
                 startActivity(openActivity);
 
             }
@@ -306,10 +377,13 @@ public class SongActivity extends AppCompatActivity {
 
     private void playNext() {
         if (mMediaPlayer != null) {
-            mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
-           // mMediaPlayer.setNextMediaPlayer(fasz);
+            mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+            // mMediaPlayer.setNextMediaPlayer(lofasz);
         }
     }
+
+
+
 
 
 }

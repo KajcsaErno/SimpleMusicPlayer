@@ -12,10 +12,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class ArtistAdapter extends ArrayAdapter<Song> {
+public class ArtistAdapter extends ArrayAdapter<Artist> {
 
-    public ArtistAdapter(Activity context, ArrayList<Song> songs) {
-        super(context, 0, songs);
+    public ArtistAdapter(Activity context, ArrayList<Artist> artists) {
+        super(context, 0, artists);
 
     }
 
@@ -30,19 +30,16 @@ public class ArtistAdapter extends ArrayAdapter<Song> {
         }
 
         //getting the position for the current song
-        Song currentSong = getItem(position);
+        Artist currentArtist = getItem(position);
 
-        //Setting the song name
-//        TextView songTextView = gridItemView.findViewById(R.id.song_name);
-//        songTextView.setText(currentSong.getSongName());
 
         //Setting the artist name
         TextView artistTextView = gridItemView.findViewById(R.id.artist_name);
-        artistTextView.setText(currentSong.getArtistName());
+        artistTextView.setText(currentArtist.getArtistName());
 
         //Setting the album image
         ImageView imgView = gridItemView.findViewById(R.id.image_view);
-        imgView.setImageResource(currentSong.getImageResourceId());
+        imgView.setImageResource(currentArtist.getImageResourceId());
 
         return gridItemView;
     }

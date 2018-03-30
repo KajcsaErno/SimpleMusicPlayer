@@ -7,50 +7,18 @@
     android:orientation="vertical"
     tools:context="com.example.android.simplemusicplayer.MainActivity">
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
-
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/music_app"
-        android:textStyle="bold"
-        android:fontFamily="sans-serif"
-        android:textColor="@android:color/white"
-        android:textSize="32sp"
-        android:layout_gravity="center"
-        android:paddingStart="22dp"
-        android:paddingEnd="22dp"
-        android:paddingBottom="99dp"/>
+        style="@style/title" />
 
     <TextView
         android:id="@+id/songs_txt_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
         android:text="@string/songs"
-        android:fontFamily="sans-serif"
-        android:textColor="@android:color/white"
-        android:textSize="32sp"
-        android:textStyle="italic"
-        android:layout_marginBottom="22dp"
-        android:layout_gravity="center"
-        android:paddingStart="22dp"
-        android:paddingEnd="22dp"/>
+        style="@style/songs" />
 
     <TextView
         android:id="@+id/albums_txt_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/albums"
-        android:layout_gravity="center"
-        android:background="@color/colorPrimaryDark"
-        android:fontFamily="sans-serif"
-        android:textStyle="italic"
-        android:textColor="@android:color/white"
-        android:textSize="32sp"
-        android:paddingStart="22dp"
-        android:paddingEnd="22dp"/>
+        style="@style/albums" />
 
 </LinearLayout>

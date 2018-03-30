@@ -19,9 +19,9 @@ public class MusicPlayerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.music_player);
+        setContentView(R.layout.now_playing);
 
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         playIcon = findViewById(R.id.play_icon);
         beginningTextVibe = findViewById(R.id.beginning__text_view);
@@ -108,6 +108,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
 
             }
         });
+
 
         fastForwardIcon.setOnClickListener(new View.OnClickListener() {
             @Override

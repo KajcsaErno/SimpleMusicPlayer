@@ -44,11 +44,5 @@ public class Song {
                 '}';
     }
 
-    public void setmImageResourceId(int mImageResourceId) {
-        this.mImageResourceId = mImageResourceId;
-    }
 
-    public void setSongName(String mSongName) {
-        this.mSongName = mSongName;
-    }
 }

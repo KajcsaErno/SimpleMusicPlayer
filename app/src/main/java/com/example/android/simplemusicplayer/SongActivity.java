@@ -26,20 +26,14 @@ public class SongActivity extends AppCompatActivity {
     //Handles audio focus when playing a sound file
     private AudioManager mAudioManager;
     //This listener gets triggered whenever the audio focus changes (i.e., we gain or lose audio focus because of another app or device).
+
     private AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
         @Override
         public void onAudioFocusChange(int focusChange) {
-            if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
-                    focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
-                // The AUDIOFOCUS_LOSS_TRANSIENT case means that we've lost audio focus for a
-                // short amount of time. The AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK case means that
-                // our app is allowed to continue playing sound but at a lower volume. We'll treat
-                // both cases the same way because our app is playing short sound files.
-
-                // Pause playback and reset player to the start of the file. That way, we can
-                // play the word from the beginning when we resume playback.
+            if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT || focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+                // The AUDIOFOCUS_LOSS_TRANSIENT case means that we've lost audio focus for a short amount of time.
+                // The AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK case means that our app is allowed to continue playing sound but at a lower volume.
                 mMediaPlayer.pause();
-                mMediaPlayer.seekTo(0);
             } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
                 // The AUDIOFOCUS_GAIN case means we have regained focus and can resume playback.
                 mMediaPlayer.start();
@@ -54,8 +48,8 @@ public class SongActivity extends AppCompatActivity {
     private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
-            // Now that the sound file has finished playing, release the media player resources.
-            releaseMediaPlayer();
+                        // Now that the sound file has finished playing, release the media player resources.
+            //releaseMediaPlayer();
         }
     };
 
@@ -63,6 +57,8 @@ public class SongActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.songs_list);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
@@ -76,7 +72,7 @@ public class SongActivity extends AppCompatActivity {
         mListView = findViewById(R.id.list);
 
         // Create a list of songs
-        final ArrayList<Song> songs = new ArrayList<Song>();
+        final ArrayList<Song> songs = new ArrayList<>();
         songs.add(new Song("Mentirosa", "Ráfaga", R.drawable.rafaga, R.raw.rafaga_mentirosa));
         songs.add(new Song("Lost On You ", "LP", R.drawable.lp, R.raw.lost_on_you));
         songs.add(new Song("Stay High ft. Hippie Sabotage", "Tove Lo", R.drawable.stay_high, R.raw.stay_high));
@@ -93,19 +89,15 @@ public class SongActivity extends AppCompatActivity {
         // The adapter knows how to create list items for each item in the list.
         SongAdapter adapter = new SongAdapter(this, songs);
 
-        ListView listView = findViewById(R.id.list);
-        listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mListView.setAdapter(adapter);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                // Release the media player if it currently exists because we are about to
-                // play a different sound file
+                // Release the media player if it currently exists because we are about to  play a different sound file
                 releaseMediaPlayer();
 
                 Song song = songs.get(position);
-                int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
-                        AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+                int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
                 if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                     // We have audio focus now.
 
@@ -116,10 +108,8 @@ public class SongActivity extends AppCompatActivity {
                     // Start the audio file
                     mMediaPlayer.start();
 
-                    // Setup a listener on the media player, so that we can stop and release the
-                    // media player once the sound has finished playing.
-                    mMediaPlayer.setOnCompletionListener(mCompletionListener);
-
+                    // Setup a listener on the media player, so that we can stop and release the media player once the sound has finished playing.
+                    //mMediaPlayer.setOnCompletionListener(mCompletionListener);
 
                     //setting the play button to pause
                     mFooterPlayIcon.setImageResource(R.drawable.ic_pause_white_36dp);
@@ -133,62 +123,62 @@ public class SongActivity extends AppCompatActivity {
                     //Updating the footer song name and image
                     if (songs.get(0) == songs.get(position)) {
                         mFooterImage.setImageResource(R.drawable.rafaga);
-                        mFooterTextView.setText("Mentirosa - Ráfaga");
+                        mFooterTextView.setText(R.string.mentirosa);
 
                     }
                     if (songs.get(1) == songs.get(position)) {
                         mFooterImage.setImageResource(R.drawable.lp);
-                        mFooterTextView.setText("LP - Lost On You");
+                        mFooterTextView.setText(R.string.lost_on_you);
 
                     }
                     if (songs.get(2) == songs.get(position)) {
                         mFooterImage.setImageResource(R.drawable.stay_high);
-                        mFooterTextView.setText("Tove Lo - Stay High ft. Hippie Sabotage");
+                        mFooterTextView.setText(R.string.stay_high_remix);
 
                     }
                     if (songs.get(3) == songs.get(position)) {
                         mFooterImage.setImageResource(R.drawable.alt_j);
-                        mFooterTextView.setText("alt-J - Something Good");
+                        mFooterTextView.setText(R.string.something_good);
 
                     }
                     if (songs.get(4) == songs.get(position)) {
                         mFooterImage.setImageResource(R.drawable.greenday);
-                        mFooterTextView.setText("Green Day - Boulevard Of Broken Dreams");
+                        mFooterTextView.setText(R.string.bulevard_of_broken_dreams);
 
                     }
                     if (songs.get(5) == songs.get(position)) {
                         mFooterImage.setImageResource(R.drawable.little_green_bag);
-                        mFooterTextView.setText("George Baker - Little Green Bag");
+                        mFooterTextView.setText(R.string.little_green_bag);
 
                     }
                     if (songs.get(6) == songs.get(position)) {
                         mFooterImage.setImageResource(R.drawable.american_money);
-                        mFooterTextView.setText("BØRNS - American Money");
+                        mFooterTextView.setText(R.string.american_money);
 
                     }
                     if (songs.get(7) == songs.get(position)) {
                         mFooterImage.setImageResource(R.drawable.false_alarm);
-                        mFooterTextView.setText("The Weeknd - False Alarm");
+                        mFooterTextView.setText(R.string.false_alarm);
 
                     }
                     if (songs.get(8) == songs.get(position)) {
                         mFooterImage.setImageResource(R.drawable.lifted_up);
-                        mFooterTextView.setText("Passion Pit - Lifted Up (1985");
+                        mFooterTextView.setText(R.string.lifted_up);
 
                     }
                     if (songs.get(9) == songs.get(position)) {
                         mFooterImage.setImageResource(R.drawable.sweet_dreams);
-                        mFooterTextView.setText("Sweet Dreams Are Made Of This - X Men Apocalypse Quicksilver Theme Song");
+                        mFooterTextView.setText(R.string.sweet_dreams);
 
                     }
                     if (songs.get(10) == songs.get(position)) {
                         mFooterImage.setImageResource(R.drawable.sky_full_of_stars);
-                        mFooterTextView.setText("Coldplay - A Sky Full Of Stars");
+                        mFooterTextView.setText(R.string.sky_full_of_stars);
 
                     }
                     if (songs.get(11) == songs.get(position)) {
                         mFooterImage.setImageResource(R.drawable.break_the_rules);
-                        mFooterTextView.setText("Charli XCX - Break The Rules");
+                        mFooterTextView.setText(R.string.break_the_rules);
                     }
 
                 }
@@ -244,7 +234,7 @@ public class SongActivity extends AppCompatActivity {
         mFooterSkipeNextIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                mMediaPlayer.setNextMediaPlayer(mMediaPlayer);
+               //mMediaPlayer.setNextMediaPlayer();
 
                 Toast.makeText(SongActivity.this, "Skips to the next song...", Toast.LENGTH_SHORT).show();
 
@@ -286,9 +276,6 @@ public class SongActivity extends AppCompatActivity {
             }
         });
 
-
-        // KajcsaListener kajcsaListener = new KajcsaListener();
-        //  mFooterSkipeNextIcon.setOnTouchListener(kajcsaListener);
     }
 
 
@@ -316,4 +303,13 @@ public class SongActivity extends AppCompatActivity {
             mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
         }
     }
+
+    private void playNext() {
+        if (mMediaPlayer != null) {
+            mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+           // mMediaPlayer.setNextMediaPlayer(fasz);
+        }
+    }
+
+
 }

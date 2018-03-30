@@ -9,13 +9,8 @@
 
     <ImageView
         android:id="@+id/image_view"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:adjustViewBounds="true"
-        android:paddingEnd="12dp"
-        android:paddingStart="12dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/note_24074_1280" />
+        android:src="@drawable/note_24074_1280"
+        style="@style/list_item_image" />
 
     <LinearLayout
         android:id="@+id/text_container_list"
@@ -25,26 +20,14 @@
 
         <TextView
             android:id="@+id/song_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            tools:text="Song Name" />
+            tools:text="Song Name"
+            style="@style/list_item_song_name" />
 
 
         <TextView
             android:id="@+id/artist_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@android:color/white"
-            tools:text="Artist Name" />
+            tools:text="Artist Name"
+            style="@style/list_item_artist_name" />
 
 
     </LinearLayout>

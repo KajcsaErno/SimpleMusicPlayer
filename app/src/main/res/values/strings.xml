@@ -23,5 +23,6 @@
     <string name="artists">Artists</string>
     <string name="_0">0</string>
     <string name="_4">4</string>
+    <string name="music_player">Music Player</string>
 
 </resources>

@@ -1,11 +1,9 @@
 package com.example.android.simplemusicplayer;
 
-import android.content.Context;
 import android.content.Intent;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,8 +18,10 @@ public class ArtistActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.artists_grid);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+          ActionBar supportActionBar = getSupportActionBar();
+          if (supportActionBar != null) {
+              getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+          }
 
         // Create a list of artists
         final ArrayList<Artist> artists = new ArrayList<>();
@@ -55,7 +55,6 @@ public class ArtistActivity extends AppCompatActivity {
                 // Release the media player if it currently exists because we are about to
                 // play a different sound file
 
-                //Updating the footer song name and image
                 if (artists.get(0) == artists.get(position)) {
                     String url = "https://rateyourmusic.com/artist/rafaga";
                     i.setData(Uri.parse(url));
@@ -126,8 +125,6 @@ public class ArtistActivity extends AppCompatActivity {
                     i.setData(Uri.parse(url));
                     startActivity(i);
                 }
-
-
 
             }
         });

@@ -25,7 +25,7 @@
 
         <TextView
             android:id="@+id/now_playing_text"
-            android:text="@string/mentirosa"
+            tools:text="@string/mentirosa"
             style="@style/now_playing_text" />
     </LinearLayout>
 

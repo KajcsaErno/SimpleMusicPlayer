@@ -3,6 +3,7 @@ package com.example.android.simplemusicplayer;
 import android.content.Context;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,7 +23,10 @@ public class NowPlayingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.now_playing);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
 
         mNowPlayingText = findViewById(R.id.now_playing_text);
@@ -179,23 +183,16 @@ public class NowPlayingActivity extends AppCompatActivity {
             }
         });
 
-
-        MyInterface myInterface = new MyInterface() {
+        InterfaceHolder.setMyInterface(new MyInterface() {
             @Override
-            public void updateText(int txt) {
-                mNowPlayingText.setText(txt);
+            public void updateText(String text) {
+                mNowPlayingText.setText(text);
             }
 
             @Override
             public void updateImage(int img) {
                 mNowPlayingImage.setImageResource(img);
             }
-        };
-
-        InterfaceHolder.setMyInterface(myInterface);
-
-
-
-
+        });
     }
 }

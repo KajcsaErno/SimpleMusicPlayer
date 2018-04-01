@@ -2,16 +2,14 @@ package com.example.android.simplemusicplayer;
 
 public class Artist {
 
-    private String mArtistName ;
+    private String mArtistName;
     private int mImageResourceId;
 
-
-    public Artist(String artistName, int imageResourceId) {
+    Artist(String artistName, int imageResourceId) {
         this.mArtistName = artistName;
         this.mImageResourceId = imageResourceId;
 
     }
-
 
     public String getArtistName() {
         return mArtistName;
@@ -20,7 +18,6 @@ public class Artist {
     public int getImageResourceId() {
         return mImageResourceId;
     }
-
 
 
 }

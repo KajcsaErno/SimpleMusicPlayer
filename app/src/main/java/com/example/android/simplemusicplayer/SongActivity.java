@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.AudioManager;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -11,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,11 +29,14 @@ public class SongActivity extends AppCompatActivity {
     private ImageView mFooterPlayIcon;
     private TextView mFooterTextView;
     private ListView mListView;
+    private Song selectedSong = null;
+    private Song selectedArtist = null;
+    private Image selectedImage = null;
 
     //Handles audio focus when playing a sound file
     private AudioManager mAudioManager;
 
-    private MyInterface myInterface;
+
     //This listener gets triggered whenever the audio focus changes (i.e., we gain or lose audio focus because of another app or device).
 
     private AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
@@ -70,13 +75,13 @@ public class SongActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         mFooterImage = findViewById(R.id.footer_image_view);
         mFooterTextView = findViewById(R.id.footer_text_view);
 
+        LinearLayout mLinearLayout = findViewById(R.id.footer_container);
 
         ImageView mFooterSkipPreviousIcon = findViewById(R.id.footer_skip_previous_icon);
         mFooterPlayIcon = findViewById(R.id.footer_play_icon);
@@ -137,11 +142,11 @@ public class SongActivity extends AppCompatActivity {
                     mFooterImage.setImageResource(songs.get(position).getImageResourceId());
                     mFooterTextView.setText(songs.get(position).getSongName());
 
+                    selectedSong = songs.get(position);
+                    selectedArtist = songs.get(position);
+//                    selectedImage = songs.get(position));
 
-                    if (myInterface != null) {
-                        myInterface.updateImage(songs.get(position).getImageResourceId());
-                        myInterface.updateText(songs.get(position).getSongName());
-                    }
+
                 }
             }
 
@@ -218,34 +223,22 @@ public class SongActivity extends AppCompatActivity {
 
         });
 
-        mFooterImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Intent to open the NowPlayingActivity
+        if (mLinearLayout != null) {
+            mLinearLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //Intent to open the NowPlayingActivity
+                    if (selectedSong != null && selectedArtist != null) {
                 Intent openActivity = new Intent(SongActivity.this, NowPlayingActivity.class);
+                        openActivity.putExtra("songName", selectedSong.getSongName());
+                        openActivity.putExtra("artistName", selectedArtist.getArtistName());
+                        //openActivity.putExtra("songImage", selectedImage.getI);
                 startActivity(openActivity);
-            }
-        });
-
-        mFooterTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Intent to open the NowPlayingActivity
-                Intent openActivity = new Intent(SongActivity.this, NowPlayingActivity.class);
-                startActivity(openActivity);
-
-            }
-        });
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        if (myInterface == null) {
-            myInterface = InterfaceHolder.getMyInterface();
+                    }
+                }
+            });
         }
+
     }
 
     @Override

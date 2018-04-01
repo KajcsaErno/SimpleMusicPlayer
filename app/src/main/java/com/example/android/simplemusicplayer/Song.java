@@ -3,12 +3,12 @@ package com.example.android.simplemusicplayer;
 public class Song {
 
     private String mSongName;
-    private String mArtistName ;
+    private String mArtistName;
     private int mImageResourceId;
     private int mSoundResourceId;
 
 
-    public Song(String songName, String artistName, int imageResourceId, int soundResourceId ) {
+    Song(String songName, String artistName, int imageResourceId, int soundResourceId) {
         this.mSongName = songName;
         this.mArtistName = artistName;
         this.mImageResourceId = imageResourceId;
@@ -27,8 +27,6 @@ public class Song {
     public int getImageResourceId() {
         return mImageResourceId;
     }
-
-
 
     public int getSoundResourceId() {
         return mSoundResourceId;

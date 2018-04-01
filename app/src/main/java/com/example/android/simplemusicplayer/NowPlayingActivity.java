@@ -13,9 +13,8 @@ import android.widget.Toast;
 
 public class NowPlayingActivity extends AppCompatActivity {
 
-    private ImageView playIcon, plusIcon, minusIcon, skipPreviousIcon, skipNextIcon, fastForwardIcon, fastRewindIcon, likeIcon, mNowPlayingImage;
-    private SeekBar seekBar;
-    private TextView beginningTextVibe, mNowPlayingText;
+    private ImageView playIcon;
+    private TextView beginningTextVibe;
 
 
     @Override
@@ -28,24 +27,36 @@ public class NowPlayingActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
+        String songName = null;
+        String artistName = null;
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            songName = bundle.getString("songName");
+            artistName = bundle.getString("artistName");
 
-        mNowPlayingText = findViewById(R.id.now_playing_text);
-        mNowPlayingImage = findViewById(R.id.now_playing_image);
+        }
+
+
+        TextView mNowPlayingSong = findViewById(R.id.now_playing_song);
+        TextView mNowPlayingArtist = findViewById(R.id.now_playing_artist);
+
+        if (songName != null) mNowPlayingSong.setText(songName);
+        if (artistName != null) mNowPlayingArtist.setText(artistName);
 
         playIcon = findViewById(R.id.play_icon);
-        likeIcon = findViewById(R.id.like_icon);
+        ImageView likeIcon = findViewById(R.id.like_icon);
 
         beginningTextVibe = findViewById(R.id.beginning__text_view);
-        seekBar = findViewById(R.id.seek_bar);
+        SeekBar seekBar = findViewById(R.id.seek_bar);
 
-        plusIcon = findViewById(R.id.plus_icon);
-        minusIcon = findViewById(R.id.minus_icon);
+        ImageView plusIcon = findViewById(R.id.plus_icon);
+        ImageView minusIcon = findViewById(R.id.minus_icon);
 
-        skipPreviousIcon = findViewById(R.id.skip_previous_icon);
-        skipNextIcon = findViewById(R.id.skip_next_icon);
+        ImageView skipPreviousIcon = findViewById(R.id.skip_previous_icon);
+        ImageView skipNextIcon = findViewById(R.id.skip_next_icon);
 
-        fastForwardIcon = findViewById(R.id.fast_forward_icon);
-        fastRewindIcon = findViewById(R.id.fast_rewind_icon);
+        ImageView fastForwardIcon = findViewById(R.id.fast_forward_icon);
+        ImageView fastRewindIcon = findViewById(R.id.fast_rewind_icon);
 
 
         beginningTextVibe.setText("Covered:" + seekBar.getProgress() + "/" + seekBar.getMax());
@@ -110,18 +121,20 @@ public class NowPlayingActivity extends AppCompatActivity {
         plusIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Increasing the volume...", Toast.LENGTH_SHORT).show();
-                audioManager.adjustVolume(AudioManager.ADJUST_RAISE, AudioManager.FLAG_PLAY_SOUND);
-
+                if (audioManager != null) {
+                    Toast.makeText(getApplicationContext(), "Increasing the volume...", Toast.LENGTH_SHORT).show();
+                    audioManager.adjustVolume(AudioManager.ADJUST_RAISE, AudioManager.FLAG_PLAY_SOUND);
+                }
             }
         });
 
         minusIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Decreasing the volume...", Toast.LENGTH_SHORT).show();
-                audioManager.adjustVolume(AudioManager.ADJUST_LOWER, AudioManager.FLAG_PLAY_SOUND);
-
+                if (audioManager != null) {
+                    Toast.makeText(getApplicationContext(), "Decreasing the volume...", Toast.LENGTH_SHORT).show();
+                    audioManager.adjustVolume(AudioManager.ADJUST_LOWER, AudioManager.FLAG_PLAY_SOUND);
+                }
             }
         });
 
@@ -183,16 +196,5 @@ public class NowPlayingActivity extends AppCompatActivity {
             }
         });
 
-        InterfaceHolder.setMyInterface(new MyInterface() {
-            @Override
-            public void updateText(String text) {
-                mNowPlayingText.setText(text);
-            }
-
-            @Override
-            public void updateImage(int img) {
-                mNowPlayingImage.setImageResource(img);
-            }
-        });
     }
 }

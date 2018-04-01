@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class SongAdapter extends ArrayAdapter<Song> {
 
-    public SongAdapter(Activity context, ArrayList<Song> songs) {
+    SongAdapter(Activity context, ArrayList<Song> songs) {
         super(context, 0, songs);
 
     }
@@ -33,19 +33,19 @@ public class SongAdapter extends ArrayAdapter<Song> {
         Song currentSong = getItem(position);
 
         //Setting the song name
-        TextView songTextView = listItemView.findViewById(R.id.song_name);
-        songTextView.setText(currentSong.getSongName());
+        if (currentSong != null) {
+            TextView songTextView = listItemView.findViewById(R.id.song_name);
+            songTextView.setText(currentSong.getSongName());
 
-        //Setting the artist name
-        TextView artistTextView = listItemView.findViewById(R.id.artist_name);
-        artistTextView.setText(currentSong.getArtistName());
+            //Setting the artist name
+            TextView artistTextView = listItemView.findViewById(R.id.artist_name);
+            artistTextView.setText(currentSong.getArtistName());
 
-        //Setting the album image
-        ImageView imgView = listItemView.findViewById(R.id.image_view);
-        imgView.setImageResource(currentSong.getImageResourceId());
+            //Setting the album image
+            ImageView imgView = listItemView.findViewById(R.id.image_view);
+            imgView.setImageResource(currentSong.getImageResourceId());
 
-
-
+        }
         return listItemView;
 
 

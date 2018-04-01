@@ -3,12 +3,14 @@
     android:id="@+id/default_grid_item"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/grid_item_linear_layout">
+    style="@style/grid_item_linear_layout"
+    tools:ignore="UseCompoundDrawables">
 
     <ImageView
         android:id="@+id/image_view"
         android:src="@drawable/note_24074_1280"
-        style="@style/grid_item_image" />
+        style="@style/grid_item_image"
+        android:contentDescription="@string/description" />
 
         <TextView
             android:id="@+id/artist_name"

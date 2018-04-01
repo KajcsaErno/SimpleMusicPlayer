@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class ArtistAdapter extends ArrayAdapter<Artist> {
 
-    public ArtistAdapter(Activity context, ArrayList<Artist> artists) {
+    ArtistAdapter(Activity context, ArrayList<Artist> artists) {
         super(context, 0, artists);
 
     }
@@ -32,15 +32,15 @@ public class ArtistAdapter extends ArrayAdapter<Artist> {
         //getting the position for the current song
         Artist currentArtist = getItem(position);
 
+        if (currentArtist != null) {
+            //Setting the artist name
+            TextView artistTextView = gridItemView.findViewById(R.id.artist_name);
+            artistTextView.setText(currentArtist.getArtistName());
 
-        //Setting the artist name
-        TextView artistTextView = gridItemView.findViewById(R.id.artist_name);
-        artistTextView.setText(currentArtist.getArtistName());
-
-        //Setting the album image
-        ImageView imgView = gridItemView.findViewById(R.id.image_view);
-        imgView.setImageResource(currentArtist.getImageResourceId());
-
+            //Setting the album image
+            ImageView imgView = gridItemView.findViewById(R.id.image_view);
+            imgView.setImageResource(currentArtist.getImageResourceId());
+        }
         return gridItemView;
     }
 }

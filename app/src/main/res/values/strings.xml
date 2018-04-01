@@ -24,5 +24,19 @@
     <string name="_0">0</string>
     <string name="_4">4</string>
     <string name="music_player">Music Player</string>
+    <string name="description">This is how it look our image from the grid</string>
+    <string name="rafaga">Ráfaga</string>
+    <string name="album_art">album art</string>
+    <string name="reduce_volume">button to reduce volume</string>
+    <string name="like_songs">button for user to like songs</string>
+    <string name="increase_volume">plus button to increase volume</string>
+    <string name="skip">skip to previous song</string>
+    <string name="fast_rewind">fast rewind button</string>
+    <string name="play">play song</string>
+    <string name="fast_forward">fast forward button</string>
+    <string name="skip_next">skip to the next song button</string>
+    <string name="skipe_next_and_fast_forward_button">skipe next and fast forward button</string>
+    <string name="fast_rewind_and_skipe_previous_button">fast rewind and skipe previous button</string>
+    <string name="the_album">the album art for the listView</string>
 
 </resources>

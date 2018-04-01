@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">#304FFE</item>
     </style>
 
     <style name="title">
@@ -133,33 +133,37 @@
         <item name="android:scaleType">fitCenter</item>
     </style>
 
-    <style name="now_playing_text">
+    <style name="now_playing_song">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:paddingBottom">22dp</item>
+        <item name="android:paddingBottom">6dp</item>
         <item name="android:paddingTop">22dp</item>
+        <item name="android:paddingStart">32dp</item>
+        <item name="android:paddingEnd">32dp</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">24sp</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:marqueeRepeatLimit">marquee_forever</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:singleLine">true</item>
     </style>
 
     <style name="now_playing_minus">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">22dp</item>
         <item name="android:layout_weight">1</item>
     </style>
 
     <style name="now_playing_like">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">5</item>
+        <item name="android:layout_weight">2</item>
     </style>
 
     <style name="now_playing_plus">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_marginEnd">22dp</item>
         <item name="android:layout_weight">1</item>
     </style>
 
@@ -193,16 +197,10 @@
         <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="now_playing_left_buttons">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginEnd">32dp</item>
-    </style>
-
-    <style name="now_playing_right_buttons">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">32dp</item>
+    <style name="now_playing_control_buttons">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
     </style>
 
     <style name="song_list">
@@ -255,6 +253,15 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
         <item name="android:padding">12dp</item>
+    </style>
+
+    <style name="now_playing_artist">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:paddingBottom">36dp</item>
     </style>
 
 </resources>

@@ -9,15 +9,13 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView songsTxtView, albumsTxtView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        songsTxtView = findViewById(R.id.songs_txt_view);
-        albumsTxtView = findViewById(R.id.albums_txt_view);
+        TextView songsTxtView = findViewById(R.id.songs_txt_view);
+        TextView albumsTxtView = findViewById(R.id.albums_txt_view);
 
 
         songsTxtView.setOnClickListener(new View.OnClickListener() {
@@ -36,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(artistIntent);
             }
         });
-
 
 
     }

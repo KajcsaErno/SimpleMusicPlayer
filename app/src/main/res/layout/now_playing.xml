@@ -21,12 +21,19 @@
         <ImageView
             android:id="@+id/now_playing_image"
             android:src="@drawable/note_24074_1280"
-            style="@style/now_playing_image" />
+            style="@style/now_playing_image"
+            android:contentDescription="@string/album_art" />
 
         <TextView
-            android:id="@+id/now_playing_text"
-            tools:text="@string/mentirosa"
-            style="@style/now_playing_text" />
+            android:id="@+id/now_playing_song"
+            style="@style/now_playing_song"
+            tools:text="Mentirosa" />
+
+        <TextView
+            android:id="@+id/now_playing_artist"
+            style="@style/now_playing_artist"
+            tools:text="@string/rafaga" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -38,26 +45,30 @@
         <ImageView
             android:id="@+id/minus_icon"
             android:src="@drawable/minus_symbol"
-            style="@style/now_playing_minus" />
+            style="@style/now_playing_minus"
+            android:contentDescription="@string/reduce_volume" />
 
         <!-- Icon made by Freepik from www.flaticon.com -->
         <ImageView
             android:id="@+id/like_icon"
             android:src="@drawable/like"
-            style="@style/now_playing_like" />
+            style="@style/now_playing_like"
+            android:contentDescription="@string/like_songs" />
 
         <!-- Icon made by Minh Hoang from www.flaticon.com -->
         <ImageView
             android:id="@+id/plus_icon"
             android:src="@drawable/plus"
-            style="@style/now_playing_plus" />
+            style="@style/now_playing_plus"
+            android:contentDescription="@string/increase_volume" />
 
 
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp">
 
         <TextView
             android:id="@+id/beginning__text_view"
@@ -73,34 +84,38 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingBottom="16dp">
 
         <ImageView
             android:id="@+id/skip_previous_icon"
             android:src="@drawable/ic_skip_previous_white_36dp"
-            style="@style/now_playing_left_buttons" />
+            style="@style/now_playing_control_buttons"
+            android:contentDescription="@string/skip" />
 
         <ImageView
             android:id="@+id/fast_rewind_icon"
            android:src="@drawable/ic_fast_rewind_white_36dp"
-            style="@style/now_playing_left_buttons"/>
+            style="@style/now_playing_control_buttons"
+            android:contentDescription="@string/fast_rewind" />
 
         <ImageView
             android:id="@+id/play_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/now_playing_control_buttons"
+            android:contentDescription="@string/play"
             android:src="@drawable/ic_play_arrow_white_36dp" />
 
         <ImageView
             android:id="@+id/fast_forward_icon"
             android:src="@drawable/ic_fast_forward_white_36dp"
-            style="@style/now_playing_right_buttons" />
+            style="@style/now_playing_control_buttons"
+            android:contentDescription="@string/fast_forward" />
 
         <ImageView
             android:id="@+id/skip_next_icon"
              android:src="@drawable/ic_skip_next_white_36dp"
-            style="@style/now_playing_right_buttons"/>
+            style="@style/now_playing_control_buttons"
+            android:contentDescription="@string/skip_next" />
 
 
     </LinearLayout>

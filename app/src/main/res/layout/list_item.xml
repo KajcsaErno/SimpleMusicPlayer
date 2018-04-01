@@ -10,7 +10,8 @@
     <ImageView
         android:id="@+id/image_view"
         android:src="@drawable/note_24074_1280"
-        style="@style/list_item_image" />
+        style="@style/list_item_image"
+        android:contentDescription="@string/the_album" />
 
     <LinearLayout
         android:id="@+id/text_container_list"

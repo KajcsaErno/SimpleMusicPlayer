@@ -29,19 +29,23 @@ public class NowPlayingActivity extends AppCompatActivity {
 
         String songName = null;
         String artistName = null;
+        int songImage = 0;
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             songName = bundle.getString("songName");
             artistName = bundle.getString("artistName");
+            songImage = bundle.getInt("songImage");
 
         }
 
 
         TextView mNowPlayingSong = findViewById(R.id.now_playing_song);
         TextView mNowPlayingArtist = findViewById(R.id.now_playing_artist);
+        ImageView mNowPLayingImage = findViewById(R.id.now_playing_image);
 
         if (songName != null) mNowPlayingSong.setText(songName);
         if (artistName != null) mNowPlayingArtist.setText(artistName);
+        if (songImage != 0) mNowPLayingImage.setImageResource(songImage);
 
         playIcon = findViewById(R.id.play_icon);
         ImageView likeIcon = findViewById(R.id.like_icon);
@@ -58,6 +62,8 @@ public class NowPlayingActivity extends AppCompatActivity {
         ImageView fastForwardIcon = findViewById(R.id.fast_forward_icon);
         ImageView fastRewindIcon = findViewById(R.id.fast_rewind_icon);
 
+        //Text Scrolling Effect for the song text view
+        mNowPlayingSong.setSelected(true);
 
         beginningTextVibe.setText("Covered:" + seekBar.getProgress() + "/" + seekBar.getMax());
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

@@ -8,10 +8,6 @@
     tools:context="com.example.android.simplemusicplayer.MainActivity">
 
     <TextView
-        android:text="@string/music_app"
-        style="@style/title" />
-
-    <TextView
         android:id="@+id/songs_txt_view"
         android:text="@string/songs"
         style="@style/songs" />

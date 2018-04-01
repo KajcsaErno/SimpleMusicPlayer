@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.AudioManager;
-import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -21,8 +20,6 @@ import java.util.ArrayList;
 
 public class SongActivity extends AppCompatActivity {
 
-
-    private static final String TAG = "SongActivity";
     //Handles playback of all the sound files
     public static MediaPlayer mMediaPlayer;
     private ImageView mFooterImage;
@@ -31,7 +28,7 @@ public class SongActivity extends AppCompatActivity {
     private ListView mListView;
     private Song selectedSong = null;
     private Song selectedArtist = null;
-    private Image selectedImage = null;
+    private Song selectedImage = null;
 
     //Handles audio focus when playing a sound file
     private AudioManager mAudioManager;
@@ -61,7 +58,7 @@ public class SongActivity extends AppCompatActivity {
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
             // Now that the sound file has finished playing, release the media player resources.
-            //releaseMediaPlayer();
+            releaseMediaPlayer();
         }
     };
 
@@ -70,6 +67,7 @@ public class SongActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.songs_list);
 
+        // back button
         ActionBar supportActionBar = getSupportActionBar();
         if (supportActionBar != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -85,7 +83,7 @@ public class SongActivity extends AppCompatActivity {
 
         ImageView mFooterSkipPreviousIcon = findViewById(R.id.footer_skip_previous_icon);
         mFooterPlayIcon = findViewById(R.id.footer_play_icon);
-        ImageView mFooterSkipeNextIcon = findViewById(R.id.footer_skip_next_icon);
+        final ImageView mFooterSkipeNextIcon = findViewById(R.id.footer_skip_next_icon);
 
         mListView = findViewById(R.id.list);
 
@@ -103,11 +101,30 @@ public class SongActivity extends AppCompatActivity {
         songs.add(new Song("Sweet Dreams Are Made Of This", "X Men Apocalypse Quicksilver Theme Song", R.drawable.sweet_dreams, R.raw.sweet_dreams));
         songs.add(new Song("A Sky Full Of Stars", "Coldplay", R.drawable.sky_full_of_stars, R.raw.sky_full_of_stars));
         songs.add(new Song("Break The Rules", "Charli XCX", R.drawable.break_the_rules, R.raw.break_the_rules));
+        songs.add(new Song("Gandalf Sax", "Epic Sax Guy", R.drawable.gandalf, R.raw.gandalf));
+        songs.add(new Song("Blue", "Eiffel 65", R.drawable.blue, R.raw.eiffel_65_blue_kny_factory_remix));
+        songs.add(new Song("The Handler ", "Muse", R.drawable.muse, R.raw.muse_the_handler));
 
         // The adapter knows how to create list items for each item in the list.
-        SongAdapter adapter = new SongAdapter(this, songs);
+        final SongAdapter adapter = new SongAdapter(this, songs);
 
         mListView.setAdapter(adapter);
+        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                // getting the positions for the following objects
+                selectedSong = songs.get(i);
+                selectedArtist = songs.get(i);
+                selectedImage = songs.get(i);
+
+                openNowPlayingActivity();
+
+                return false;
+            }
+        });
+
+
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -127,7 +144,7 @@ public class SongActivity extends AppCompatActivity {
                     mMediaPlayer.start();
 
                     // Setup a listener on the media player, so that we can stop and release the media player once the sound has finished playing.
-                    //mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                    mMediaPlayer.setOnCompletionListener(mCompletionListener);
 
                     //setting the play button to pause
                     mFooterPlayIcon.setImageResource(R.drawable.ic_pause_white_36dp);
@@ -135,23 +152,24 @@ public class SongActivity extends AppCompatActivity {
                     //changing the background color when a music is selected
                     mListView.setBackgroundColor(Color.parseColor("#00FF00"));
 
-                    //Text Scrolling Effect
+                    //starting Text Scrolling Effect
                     mFooterTextView.setSelected(true);
 
-
+                    //updating the footer image view and text view when user selects a item from the list
                     mFooterImage.setImageResource(songs.get(position).getImageResourceId());
                     mFooterTextView.setText(songs.get(position).getSongName());
 
+                    // getting the positions for the following objects
                     selectedSong = songs.get(position);
                     selectedArtist = songs.get(position);
-//                    selectedImage = songs.get(position));
-
+                    selectedImage = songs.get(position);
 
                 }
             }
 
 
         });
+
 
 
         mFooterPlayIcon.setOnClickListener(new View.OnClickListener() {
@@ -199,7 +217,15 @@ public class SongActivity extends AppCompatActivity {
         mFooterSkipeNextIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //mMediaPlayer.setNextMediaPlayer();
+
+                for (int i = 0; i <= songs.size(); i++) {
+                    if (songs.get(i).equals(1)) {
+                        songs.indexOf(1);
+//                        songs.set(0,i);
+                    }
+                }
+
+                // mMediaPlayer.setNextMediaPlayer();
 
                 Toast.makeText(SongActivity.this, "Skips to the next song...", Toast.LENGTH_SHORT).show();
 
@@ -227,24 +253,27 @@ public class SongActivity extends AppCompatActivity {
             mLinearLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //Intent to open the NowPlayingActivity
-                    if (selectedSong != null && selectedArtist != null) {
-                Intent openActivity = new Intent(SongActivity.this, NowPlayingActivity.class);
-                        openActivity.putExtra("songName", selectedSong.getSongName());
-                        openActivity.putExtra("artistName", selectedArtist.getArtistName());
-                        //openActivity.putExtra("songImage", selectedImage.getI);
-                startActivity(openActivity);
-                    }
+                    openNowPlayingActivity();
                 }
             });
         }
 
     }
 
+    public void openNowPlayingActivity() {
+        if (selectedSong != null && selectedArtist != null) {
+            Intent openActivity = new Intent(SongActivity.this, NowPlayingActivity.class);
+            openActivity.putExtra("songName", selectedSong.getSongName());
+            openActivity.putExtra("artistName", selectedArtist.getArtistName());
+            openActivity.putExtra("songImage", selectedImage.getImageResourceId());
+            startActivity(openActivity);
+        }
+    }
+
+
     @Override
     public void onStop() {
         super.onStop();
-
         releaseMediaPlayer();
     }
 
@@ -265,13 +294,5 @@ public class SongActivity extends AppCompatActivity {
             mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
         }
     }
-
-    private void playNext() {
-        if (mMediaPlayer != null) {
-            mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
-            // mMediaPlayer.setNextMediaPlayer(lofasz);
-        }
-    }
-
 
 }

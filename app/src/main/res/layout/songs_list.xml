@@ -23,9 +23,9 @@
 
         <ImageView
             android:id="@+id/footer_image_view"
-            android:src="@drawable/note_24074_1280"
             style="@style/footer_image"
-            android:contentDescription="@string/album_art" />
+            android:contentDescription="@string/album_art"
+            android:src="@drawable/note_24074_1280" />
 
         <TextView
             android:id="@+id/footer_text_view"

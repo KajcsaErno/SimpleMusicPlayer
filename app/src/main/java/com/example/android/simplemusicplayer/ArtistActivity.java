@@ -37,6 +37,9 @@ public class ArtistActivity extends AppCompatActivity {
         artists.add(new Artist("X Men Apocalypse Quicksilver Theme Artist()", R.drawable.sweet_dreams));
         artists.add(new Artist("Coldplay", R.drawable.sky_full_of_stars));
         artists.add(new Artist("Charli XCX", R.drawable.break_the_rules));
+        artists.add(new Artist("Epic Sax Guy", R.drawable.gandalf));
+        artists.add(new Artist("Eiffel 65", R.drawable.blue));
+        artists.add(new Artist("Muse", R.drawable.muse));
 
         // The adapter knows how to create list items for each item in the list.
         final ArtistAdapter adapter = new ArtistAdapter(this, artists);
@@ -122,6 +125,24 @@ public class ArtistActivity extends AppCompatActivity {
                 }
                 if (artists.get(11) == artists.get(position)) {
                     String url = "https://rateyourmusic.com/artist/charli-xcx";
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+                }
+
+                if (artists.get(12) == artists.get(position)) {
+                    String url = "https://www.youtube.com/watch?v=hG4CA33h2q4";
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+                }
+
+                if (artists.get(13) == artists.get(position)) {
+                    String url = "https://rateyourmusic.com/artist/eiffel-65";
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+                }
+
+                if (artists.get(14) == artists.get(position)) {
+                    String url = "https://rateyourmusic.com/artist/muse";
                     i.setData(Uri.parse(url));
                     startActivity(i);
                 }

@@ -7,22 +7,10 @@
     <string name="songs">Songs</string>
     <string name="albums">Albums</string>
     <string name="music_app">Music App</string>
-    <string name="break_the_rules">Charli XCX - Break The Rules</string>
-    <string name="sky_full_of_stars">Coldplay - A Sky Full Of Stars</string>
-    <string name="sweet_dreams">Sweet Dreams Are Made Of This - X Men Apocalypse Quicksilver Theme Song</string>
-    <string name="lifted_up">Passion Pit - Lifted Up (1985</string>
-    <string name="false_alarm">The Weeknd - False Alarm</string>
-    <string name="american_money">BØRNS - American Money</string>
-    <string name="little_green_bag">George Baker - Little Green Bag</string>
-    <string name="bulevard_of_broken_dreams">Green Day - Boulevard Of Broken Dreams</string>
-    <string name="something_good">alt-J - Something Good</string>
-    <string name="stay_high_remix">Tove Lo - Stay High ft. Hippie Sabotage</string>
-    <string name="lost_on_you">LP - Lost On You</string>
     <string name="mentirosa">Mentirosa - Ráfaga</string>
     <string name="now_playing">Now Playing</string>
     <string name="artists">Artists</string>
     <string name="_0">0</string>
-    <string name="_4">4</string>
     <string name="music_player">Music Player App</string>
     <string name="description">This is how it look our image from the grid</string>
     <string name="rafaga">Ráfaga</string>
@@ -38,5 +26,6 @@
     <string name="skipe_next_and_fast_forward_button">skipe next and fast forward button</string>
     <string name="fast_rewind_and_skipe_previous_button">fast rewind and skipe previous button</string>
     <string name="the_album">the album art for the listView</string>
+    <string name="covered">Covered: %d/%d</string>
 
 </resources>

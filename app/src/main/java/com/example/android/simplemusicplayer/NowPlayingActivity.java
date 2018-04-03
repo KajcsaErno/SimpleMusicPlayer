@@ -14,7 +14,7 @@ import android.widget.Toast;
 public class NowPlayingActivity extends AppCompatActivity {
 
     private ImageView playIcon;
-    private TextView beginningTextVibe;
+    private TextView seekBarInteger;
 
 
     @Override
@@ -50,7 +50,7 @@ public class NowPlayingActivity extends AppCompatActivity {
         playIcon = findViewById(R.id.play_icon);
         ImageView likeIcon = findViewById(R.id.like_icon);
 
-        beginningTextVibe = findViewById(R.id.beginning__text_view);
+        seekBarInteger = findViewById(R.id.beginning__text_view);
         SeekBar seekBar = findViewById(R.id.seek_bar);
 
         ImageView plusIcon = findViewById(R.id.plus_icon);
@@ -65,7 +65,7 @@ public class NowPlayingActivity extends AppCompatActivity {
         //Text Scrolling Effect for the song text view
         mNowPlayingSong.setSelected(true);
 
-        beginningTextVibe.setText("Covered:" + seekBar.getProgress() + "/" + seekBar.getMax());
+        seekBarInteger.setText(String.format(getString(R.string.covered), seekBar.getProgress(), seekBar.getMax()));
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int progress = 0;
 
@@ -83,7 +83,7 @@ public class NowPlayingActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                beginningTextVibe.setText("Covered: " + progress + "/" + seekBar.getMax());
+                seekBarInteger.setText(String.format(getString(R.string.covered), progress, seekBar.getMax()));
                 Toast.makeText(getApplicationContext(), "Stopped tracking", Toast.LENGTH_SHORT).show();
             }
         });

@@ -9,12 +9,12 @@
 
     <TextView
         android:id="@+id/songs_txt_view"
-        android:text="@string/songs"
-        style="@style/songs" />
+        style="@style/songs"
+        android:text="@string/songs" />
 
     <TextView
         android:id="@+id/albums_txt_view"
-        android:text="@string/albums"
-        style="@style/albums" />
+        style="@style/albums"
+        android:text="@string/albums" />
 
 </LinearLayout>

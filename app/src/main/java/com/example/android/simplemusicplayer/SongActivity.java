@@ -39,17 +39,20 @@ public class SongActivity extends AppCompatActivity {
     private AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
         @Override
         public void onAudioFocusChange(int focusChange) {
-            if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT || focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+            if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
                 // The AUDIOFOCUS_LOSS_TRANSIENT case means that we've lost audio focus for a short amount of time.
                 // The AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK case means that our app is allowed to continue playing sound but at a lower volume.
                 mMediaPlayer.pause();
+
+            } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+                mMediaPlayer.setVolume(4, 4);
+
             } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
                 // The AUDIOFOCUS_GAIN case means we have regained focus and can resume playback.
                 mMediaPlayer.start();
             } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
-                // The AUDIOFOCUS_LOSS case means we've lost audio focus and
-                // Stop playback and clean up resources
-//                releaseMediaPlayer();
+                // The AUDIOFOCUS_LOSS case means we've lost audio focus and Stop playback and clean up resources
+                releaseMediaPlayer();
             }
         }
     };
@@ -73,7 +76,7 @@ public class SongActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        //request audio focus
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         mFooterImage = findViewById(R.id.footer_image_view);
@@ -86,6 +89,7 @@ public class SongActivity extends AppCompatActivity {
         final ImageView mFooterSkipeNextIcon = findViewById(R.id.footer_skip_next_icon);
 
         mListView = findViewById(R.id.list);
+
 
         // Create a list of songs
         final ArrayList<Song> songs = new ArrayList<>();
@@ -135,7 +139,6 @@ public class SongActivity extends AppCompatActivity {
                 int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
                 if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                     // We have audio focus now.
-
                     // Create and setup the {@link MediaPlayer} for the audio resource associated
                     // with the current word
                     mMediaPlayer = MediaPlayer.create(SongActivity.this, song.getSoundResourceId());
@@ -157,7 +160,7 @@ public class SongActivity extends AppCompatActivity {
 
                     //updating the footer image view and text view when user selects a item from the list
                     mFooterImage.setImageResource(songs.get(position).getImageResourceId());
-                    mFooterTextView.setText(songs.get(position).getSongName());
+                    mFooterTextView.setText(String.format("%s - %s", songs.get(position).getArtistName(), songs.get(position).getSongName()));
 
                     // getting the positions for the following objects
                     selectedSong = songs.get(position);
@@ -165,11 +168,12 @@ public class SongActivity extends AppCompatActivity {
                     selectedImage = songs.get(position);
 
                 }
+
+
             }
 
 
         });
-
 
 
         mFooterPlayIcon.setOnClickListener(new View.OnClickListener() {
@@ -217,16 +221,7 @@ public class SongActivity extends AppCompatActivity {
         mFooterSkipeNextIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                for (int i = 0; i <= songs.size(); i++) {
-                    if (songs.get(i).equals(1)) {
-                        songs.indexOf(1);
-//                        songs.set(0,i);
-                    }
-                }
-
                 // mMediaPlayer.setNextMediaPlayer();
-
                 Toast.makeText(SongActivity.this, "Skips to the next song...", Toast.LENGTH_SHORT).show();
 
             }
@@ -257,6 +252,7 @@ public class SongActivity extends AppCompatActivity {
                 }
             });
         }
+
 
     }
 

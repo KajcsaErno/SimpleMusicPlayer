@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,26 +15,31 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         TextView songsTxtView = findViewById(R.id.songs_txt_view);
+        songsTxtView.setOnClickListener(this);
+
         TextView albumsTxtView = findViewById(R.id.albums_txt_view);
+        albumsTxtView.setOnClickListener(this);
 
+    }
 
-        songsTxtView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.songs_txt_view:
                 Intent songsIntent = new Intent(MainActivity.this, SongActivity.class);
                 startActivity(songsIntent);
-            }
-        });
+                break;
 
-        albumsTxtView.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View view) {
+            case R.id.albums_txt_view:
                 Intent artistIntent = new Intent(MainActivity.this, ArtistActivity.class);
                 startActivity(artistIntent);
-            }
-        });
+                break;
+        }
+    }
 
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
 }

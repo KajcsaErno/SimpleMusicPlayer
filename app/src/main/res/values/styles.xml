@@ -14,11 +14,11 @@
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">32sp</item>
+        <item name="android:textSize">@dimen/text_view_size</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:paddingStart">22dp</item>
-        <item name="android:paddingEnd">22dp</item>
-        <item name="android:paddingBottom">100dp</item>
+        <item name="android:paddingStart">@dimen/text_view_padding</item>
+        <item name="android:paddingEnd">@dimen/text_view_padding</item>
+        <item name="android:paddingBottom">@dimen/text_view_big_padding</item>
     </style>
 
     <style name="songs">
@@ -27,12 +27,12 @@
         <item name="android:background">@color/colorPrimaryDark</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">32sp</item>
+        <item name="android:textSize">@dimen/text_view_size</item>
         <item name="android:textStyle">italic</item>
-        <item name="android:layout_marginBottom">22dp</item>
+        <item name="android:layout_marginBottom">@dimen/text_view_padding</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:paddingStart">22dp</item>
-        <item name="android:paddingEnd">22dp</item>
+        <item name="android:paddingStart">@dimen/text_view_padding</item>
+        <item name="android:paddingEnd">@dimen/text_view_padding</item>
         <item name="android:layout_marginTop">42dp</item>
     </style>
 
@@ -44,18 +44,18 @@
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textStyle">italic</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">32sp</item>
-        <item name="android:paddingStart">22dp</item>
-        <item name="android:paddingEnd">22dp</item>
+        <item name="android:textSize">@dimen/text_view_size</item>
+        <item name="android:paddingStart">@dimen/text_view_padding</item>
+        <item name="android:paddingEnd">@dimen/text_view_padding</item>
     </style>
 
     <style name="grid_view">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:columnWidth">100dp</item>
+        <item name="android:columnWidth">@dimen/text_view_big_padding</item>
         <item name="android:gravity">center</item>
-        <item name="android:layout_marginEnd">14dp</item>
-        <item name="android:layout_marginBottom">14dp</item>
+        <item name="android:layout_marginEnd">@dimen/grind_view_margin</item>
+        <item name="android:layout_marginBottom">@dimen/grind_view_margin</item>
         <item name="android:horizontalSpacing">10dp</item>
         <item name="android:numColumns">auto_fit</item>
         <item name="android:stretchMode">spacingWidthUniform</item>
@@ -64,10 +64,10 @@
 
     <style name="grid_item_image">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_height">@dimen/text_view_big_padding</item>
         <item name="android:adjustViewBounds">true</item>
-        <item name="android:paddingStart">12dp</item>
-        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingStart">@dimen/text_view_small_padding</item>
+        <item name="android:paddingEnd">@dimen/text_view_small_padding</item>
         <item name="android:scaleType">centerCrop</item>
     </style>
 
@@ -77,7 +77,7 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:ellipsize">end</item>
         <item name="android:shadowColor">@color/colorPrimaryDark</item>
-        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:layout_marginTop">@dimen/text_view_small_padding</item>
         <item name="android:singleLine">true</item>
         <item name="android:textAppearance">?android:textAppearanceMedium</item>
         <item name="android:textStyle">bold</item>
@@ -93,18 +93,18 @@
     </style>
 
     <style name="list_item_image">
-        <item name="android:layout_width">80dp</item>
-        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_width">@dimen/list_item_dimension</item>
+        <item name="android:layout_height">@dimen/list_item_dimension</item>
         <item name="android:adjustViewBounds">true</item>
-        <item name="android:paddingEnd">12dp</item>
-        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">@dimen/text_view_small_padding</item>
+        <item name="android:paddingStart">@dimen/text_view_small_padding</item>
         <item name="android:scaleType">fitCenter</item>
     </style>
 
     <style name="list_item_song_name">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">18dp</item>
+        <item name="android:layout_marginTop">@dimen/margin_top</item>
         <item name="android:ellipsize">end</item>
         <item name="android:singleLine">true</item>
         <item name="android:textAppearance">?android:textAppearanceMedium</item>
@@ -124,13 +124,13 @@
     <style name="now_playing_image">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">300dp</item>
-        <item name="android:layout_marginLeft">42dp</item>
-        <item name="android:layout_marginRight">42dp</item>
-        <item name="android:layout_marginTop">18dp</item>
+        <item name="android:layout_marginLeft">@dimen/text_view_now_playing_margin</item>
+        <item name="android:layout_marginRight">@dimen/text_view_now_playing_margin</item>
+        <item name="android:layout_marginTop">@dimen/margin_top</item>
         <item name="android:adjustViewBounds">true</item>
         <item name="android:background">@color/colorPrimary</item>
         <item name="android:maxHeight">150dp</item>
-        <item name="android:padding">22dp</item>
+        <item name="android:padding">@dimen/text_view_padding</item>
         <item name="android:scaleType">fitCenter</item>
     </style>
 
@@ -139,7 +139,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:paddingBottom">6dp</item>
-        <item name="android:paddingTop">22dp</item>
+        <item name="android:paddingTop">@dimen/text_view_padding</item>
         <item name="android:paddingStart">32dp</item>
         <item name="android:paddingEnd">38dp</item>
         <item name="android:textColor">@android:color/white</item>
@@ -170,10 +170,10 @@
 
     <style name="now_playing_seekbar">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_marginTop">26dp</item>
-        <item name="android:layout_marginBottom">26dp</item>
-        <item name="android:layout_marginStart">24dp</item>
-        <item name="android:layout_marginEnd">24dp</item>
+        <item name="android:layout_marginTop">@dimen/seekbar_margin_top_bottom</item>
+        <item name="android:layout_marginBottom">@dimen/seekbar_margin_top_bottom</item>
+        <item name="android:layout_marginStart">@dimen/seekbar_margin_start_end</item>
+        <item name="android:layout_marginEnd">@dimen/seekbar_margin_start_end</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:max">10</item>
     </style>
@@ -185,7 +185,7 @@
         <item name="android:layout_alignStart">@+id/seek_bar</item>
         <item name="android:layout_marginStart">11dp</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/text_view_small_size</item>
     </style>
 
     <style name="now_playing_seekbar_ending">
@@ -195,7 +195,7 @@
         <item name="android:layout_alignStart">@+id/seek_bar</item>
         <item name="android:layout_marginStart">320dp</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/text_view_small_size</item>
     </style>
 
     <style name="now_playing_control_buttons">
@@ -231,16 +231,16 @@
         <item name="android:scrollHorizontally">true</item>
         <item name="android:singleLine">true</item>
         <item name="android:layout_marginBottom">8dp</item>
-        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingTop">@dimen/text_view_small_padding</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/text_view_small_size</item>
     </style>
 
     <style name="footer_rewind">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:padding">12dp</item>
+        <item name="android:padding">@dimen/text_view_small_padding</item>
     </style>
 
     <style name="footer_play">
@@ -253,7 +253,7 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:padding">12dp</item>
+        <item name="android:padding">@dimen/text_view_small_padding</item>
     </style>
 
     <style name="now_playing_artist">
@@ -261,7 +261,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/text_view_small_size</item>
         <item name="android:paddingBottom">36dp</item>
     </style>
 

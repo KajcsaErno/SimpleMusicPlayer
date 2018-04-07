@@ -93,21 +93,21 @@ public class SongActivity extends AppCompatActivity {
 
         // Create a list of songs
         final ArrayList<Song> songs = new ArrayList<>();
-        songs.add(new Song("Mentirosa", "Ráfaga", R.drawable.rafaga, R.raw.rafaga_mentirosa));
-        songs.add(new Song("Lost On You ", "LP", R.drawable.lp, R.raw.lost_on_you));
-        songs.add(new Song("Stay High ft. Hippie Sabotage", "Tove Lo", R.drawable.stay_high, R.raw.stay_high));
-        songs.add(new Song("Something Good", "alt-J", R.drawable.alt_j, R.raw.something_good));
-        songs.add(new Song("Boulevard Of Broken Dreams", "Green Day", R.drawable.greenday, R.raw.boulevard_of_broken_dreams));
-        songs.add(new Song("Little Green Bag ", "George Baker", R.drawable.little_green_bag, R.raw.little_green_bag));
-        songs.add(new Song("American Money", "BØRNS", R.drawable.american_money, R.raw.american_money));
-        songs.add(new Song("False Alarm", "The Weeknd", R.drawable.false_alarm, R.raw.false_alarm));
-        songs.add(new Song("Lifted Up (1985)", "Passion Pit", R.drawable.lifted_up, R.raw.lifted_up));
-        songs.add(new Song("Sweet Dreams Are Made Of This", "X Men Apocalypse Quicksilver Theme Song", R.drawable.sweet_dreams, R.raw.sweet_dreams));
-        songs.add(new Song("A Sky Full Of Stars", "Coldplay", R.drawable.sky_full_of_stars, R.raw.sky_full_of_stars));
-        songs.add(new Song("Break The Rules", "Charli XCX", R.drawable.break_the_rules, R.raw.break_the_rules));
-        songs.add(new Song("Gandalf Sax", "Epic Sax Guy", R.drawable.gandalf, R.raw.gandalf));
-        songs.add(new Song("Blue", "Eiffel 65", R.drawable.blue, R.raw.eiffel_65_blue_kny_factory_remix));
-        songs.add(new Song("The Handler ", "Muse", R.drawable.muse, R.raw.muse_the_handler));
+        songs.add(new Song(getResources().getString(R.string.mentirosa), getResources().getString(R.string.rafaga), R.drawable.rafaga, R.raw.rafaga_mentirosa));
+        songs.add(new Song(getResources().getString(R.string.lost_on_you), getResources().getString(R.string.lp), R.drawable.lp, R.raw.lost_on_you));
+        songs.add(new Song(getResources().getString(R.string.stay_high), getResources().getString(R.string.tove_lo), R.drawable.stay_high, R.raw.stay_high));
+        songs.add(new Song(getResources().getString(R.string.something_good), getResources().getString(R.string.altJ), R.drawable.alt_j, R.raw.something_good));
+        songs.add(new Song(getResources().getString(R.string.bulevard), getResources().getString(R.string.green_day), R.drawable.greenday, R.raw.boulevard_of_broken_dreams));
+        songs.add(new Song(getResources().getString(R.string.little_green_bag), getResources().getString(R.string.geoge_baker), R.drawable.little_green_bag, R.raw.little_green_bag));
+        songs.add(new Song(getResources().getString(R.string.american_money), getResources().getString(R.string.borns), R.drawable.american_money, R.raw.american_money));
+        songs.add(new Song(getResources().getString(R.string.false_alarm), getResources().getString(R.string.the_weeken), R.drawable.false_alarm, R.raw.false_alarm));
+        songs.add(new Song(getResources().getString(R.string.lifted_up), getResources().getString(R.string.lifted_up), R.drawable.lifted_up, R.raw.lifted_up));
+        songs.add(new Song(getResources().getString(R.string.sweet_dream), getResources().getString(R.string.x_man), R.drawable.sweet_dreams, R.raw.sweet_dreams));
+        songs.add(new Song(getResources().getString(R.string.a_sky_full_of_starts), getResources().getString(R.string.coldplay), R.drawable.sky_full_of_stars, R.raw.sky_full_of_stars));
+        songs.add(new Song(getResources().getString(R.string.break_the_rules), getResources().getString(R.string.charli_xcx), R.drawable.break_the_rules, R.raw.break_the_rules));
+        songs.add(new Song(getResources().getString(R.string.gandalf_sax), getResources().getString(R.string.epic_sax_guy), R.drawable.gandalf, R.raw.gandalf));
+        songs.add(new Song(getResources().getString(R.string.blue), getResources().getString(R.string.eiffel_65), R.drawable.blue, R.raw.eiffel_65_blue_kny_factory_remix));
+        songs.add(new Song(getResources().getString(R.string.the_handler), getResources().getString(R.string.muse), R.drawable.muse, R.raw.muse_the_handler));
 
         // The adapter knows how to create list items for each item in the list.
         final SongAdapter adapter = new SongAdapter(this, songs);

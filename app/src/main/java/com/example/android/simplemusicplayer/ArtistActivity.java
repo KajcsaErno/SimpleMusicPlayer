@@ -25,21 +25,21 @@ public class ArtistActivity extends AppCompatActivity {
 
         // Create a list of artists
         final ArrayList<Artist> artists = new ArrayList<>();
-        artists.add(new Artist("Ráfaga", R.drawable.rafaga));
-        artists.add(new Artist("LP", R.drawable.lp));
-        artists.add(new Artist("Tove Lo", R.drawable.stay_high));
-        artists.add(new Artist("alt-J", R.drawable.alt_j));
-        artists.add(new Artist("Green Day", R.drawable.greenday));
-        artists.add(new Artist("George Baker", R.drawable.little_green_bag));
-        artists.add(new Artist("BØRNS", R.drawable.american_money));
-        artists.add(new Artist("The Weeknd", R.drawable.false_alarm));
-        artists.add(new Artist("Passion Pit", R.drawable.lifted_up));
-        artists.add(new Artist("X Men Apocalypse Quicksilver Theme Artist()", R.drawable.sweet_dreams));
-        artists.add(new Artist("Coldplay", R.drawable.sky_full_of_stars));
-        artists.add(new Artist("Charli XCX", R.drawable.break_the_rules));
-        artists.add(new Artist("Epic Sax Guy", R.drawable.gandalf));
-        artists.add(new Artist("Eiffel 65", R.drawable.blue));
-        artists.add(new Artist("Muse", R.drawable.muse));
+        artists.add(new Artist(getResources().getString(R.string.rafaga), R.drawable.rafaga));
+        artists.add(new Artist(getResources().getString(R.string.lp), R.drawable.lp));
+        artists.add(new Artist(getResources().getString(R.string.tove_lo), R.drawable.stay_high));
+        artists.add(new Artist(getResources().getString(R.string.altJ), R.drawable.alt_j));
+        artists.add(new Artist(getResources().getString(R.string.green_day), R.drawable.greenday));
+        artists.add(new Artist(getResources().getString(R.string.geoge_baker), R.drawable.little_green_bag));
+        artists.add(new Artist(getResources().getString(R.string.borns), R.drawable.american_money));
+        artists.add(new Artist(getResources().getString(R.string.the_weeken), R.drawable.false_alarm));
+        artists.add(new Artist(getResources().getString(R.string.passion_pit), R.drawable.lifted_up));
+        artists.add(new Artist(getResources().getString(R.string.x_man), R.drawable.sweet_dreams));
+        artists.add(new Artist(getResources().getString(R.string.coldplay), R.drawable.sky_full_of_stars));
+        artists.add(new Artist(getResources().getString(R.string.charli_xcx), R.drawable.break_the_rules));
+        artists.add(new Artist(getResources().getString(R.string.epic_sax_guy), R.drawable.gandalf));
+        artists.add(new Artist(getResources().getString(R.string.eiffel_65), R.drawable.blue));
+        artists.add(new Artist(getResources().getString(R.string.muse), R.drawable.muse));
 
         // The adapter knows how to create list items for each item in the list.
         final ArtistAdapter adapter = new ArtistAdapter(this, artists);

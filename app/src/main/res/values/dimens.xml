@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_view_padding">22dp</dimen>
+    <dimen name="text_view_size">32sp</dimen>
+    <dimen name="text_view_small_size">18sp</dimen>
+    <dimen name="text_view_big_padding">100dp</dimen>
+    <dimen name="text_view_small_padding">12dp</dimen>
+    <dimen name="text_view_now_playing_margin">42dp</dimen>
+    <dimen name="grind_view_margin">14dp</dimen>
+    <dimen name="list_item_dimension">80dp</dimen>
+    <dimen name="margin_top">18dp</dimen>
+    <dimen name="seekbar_margin_top_bottom">26dp</dimen>
+    <dimen name="seekbar_margin_start_end">24dp</dimen>
+</resources>

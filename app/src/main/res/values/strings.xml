@@ -13,7 +13,6 @@
     <string name="_0">0</string>
     <string name="music_player">Music Player App</string>
     <string name="description">This is how it look our image from the grid</string>
-    <string name="rafaga">Ráfaga</string>
     <string name="album_art">album art</string>
     <string name="reduce_volume">button to reduce volume</string>
     <string name="like_songs">button for user to like songs</string>
@@ -27,5 +26,34 @@
     <string name="fast_rewind_and_skipe_previous_button">fast rewind and skipe previous button</string>
     <string name="the_album">the album art for the listView</string>
     <string name="covered">Covered: %d/%d</string>
+    <string name="rafaga">Ráfaga</string>
+    <string name="lp">LP</string>
+    <string name="tove_lo">Tove Lo</string>
+    <string name="altJ">alt-J</string>
+    <string name="green_day">Green Day</string>
+    <string name="geoge_baker">George Baker</string>
+    <string name="borns">BØRNS</string>
+    <string name="the_weeken">The Weeknd</string>
+    <string name="passion_pit">Passion Pit</string>
+    <string name="x_man">X Men Apocalypse Quicksilver Theme Artist()</string>
+    <string name="coldplay">Coldplay</string>
+    <string name="charli_xcx">Charli XCX</string>
+    <string name="epic_sax_guy">Epic Sax Guy</string>
+    <string name="eiffel_65">Eiffel 65</string>
+    <string name="muse">Muse</string>
+    <string name="lost_on_you">Lost On You</string>
+    <string name="stay_high">Stay High ft. Hippie Sabotage</string>
+    <string name="something_good">Something Good</string>
+    <string name="bulevard">Boulevard Of Broken Dreams</string>
+    <string name="little_green_bag">Little Green Bag</string>
+    <string name="american_money">American Money</string>
+    <string name="false_alarm">False Alarm</string>
+    <string name="lifted_up">Lifted Up (1985)</string>
+    <string name="sweet_dream">Sweet Dreams Are Made Of This</string>
+    <string name="a_sky_full_of_starts">A Sky Full Of Stars</string>
+    <string name="break_the_rules">Break The Rules</string>
+    <string name="gandalf_sax">Gandalf Sax</string>
+    <string name="blue">Blue</string>
+    <string name="the_handler">The Handler</string>
 
 </resources>

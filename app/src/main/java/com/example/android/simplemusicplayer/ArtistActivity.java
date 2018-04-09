@@ -25,127 +25,39 @@ public class ArtistActivity extends AppCompatActivity {
 
         // Create a list of artists
         final ArrayList<Artist> artists = new ArrayList<>();
-        artists.add(new Artist(getResources().getString(R.string.rafaga), R.drawable.rafaga));
-        artists.add(new Artist(getResources().getString(R.string.lp), R.drawable.lp));
-        artists.add(new Artist(getResources().getString(R.string.tove_lo), R.drawable.stay_high));
-        artists.add(new Artist(getResources().getString(R.string.altJ), R.drawable.alt_j));
-        artists.add(new Artist(getResources().getString(R.string.green_day), R.drawable.greenday));
-        artists.add(new Artist(getResources().getString(R.string.geoge_baker), R.drawable.little_green_bag));
-        artists.add(new Artist(getResources().getString(R.string.borns), R.drawable.american_money));
-        artists.add(new Artist(getResources().getString(R.string.the_weeken), R.drawable.false_alarm));
-        artists.add(new Artist(getResources().getString(R.string.passion_pit), R.drawable.lifted_up));
-        artists.add(new Artist(getResources().getString(R.string.x_man), R.drawable.sweet_dreams));
-        artists.add(new Artist(getResources().getString(R.string.coldplay), R.drawable.sky_full_of_stars));
-        artists.add(new Artist(getResources().getString(R.string.charli_xcx), R.drawable.break_the_rules));
-        artists.add(new Artist(getResources().getString(R.string.epic_sax_guy), R.drawable.gandalf));
-        artists.add(new Artist(getResources().getString(R.string.eiffel_65), R.drawable.blue));
-        artists.add(new Artist(getResources().getString(R.string.muse), R.drawable.muse));
+        artists.add(new Artist(getResources().getString(R.string.rafaga), R.drawable.rafaga, getResources().getString(R.string.rafaga_website)));
+        artists.add(new Artist(getResources().getString(R.string.lp), R.drawable.lp, getResources().getString(R.string.lp_website)));
+        artists.add(new Artist(getResources().getString(R.string.tove_lo), R.drawable.stay_high, getResources().getString(R.string.tove_lo_website)));
+        artists.add(new Artist(getResources().getString(R.string.altJ), R.drawable.alt_j, getResources().getString(R.string.altJ_websiite)));
+        artists.add(new Artist(getResources().getString(R.string.green_day), R.drawable.greenday, getResources().getString(R.string.green_day_website)));
+        artists.add(new Artist(getResources().getString(R.string.geoge_baker), R.drawable.little_green_bag, getResources().getString(R.string.george_baker_website)));
+        artists.add(new Artist(getResources().getString(R.string.borns), R.drawable.american_money, getResources().getString(R.string.borns_website)));
+        artists.add(new Artist(getResources().getString(R.string.the_weeken), R.drawable.false_alarm, getResources().getString(R.string.the_weeken_website)));
+        artists.add(new Artist(getResources().getString(R.string.passion_pit), R.drawable.lifted_up, getResources().getString(R.string.passion_pit_website)));
+        artists.add(new Artist(getResources().getString(R.string.x_man), R.drawable.sweet_dreams, getResources().getString(R.string.eurythmics_website)));
+        artists.add(new Artist(getResources().getString(R.string.coldplay), R.drawable.sky_full_of_stars, getResources().getString(R.string.coldplay_website)));
+        artists.add(new Artist(getResources().getString(R.string.charli_xcx), R.drawable.break_the_rules, getResources().getString(R.string.charlie_xcx_website)));
+        artists.add(new Artist(getResources().getString(R.string.epic_sax_guy), R.drawable.gandalf, getResources().getString(R.string.gandalf_website)));
+        artists.add(new Artist(getResources().getString(R.string.eiffel_65), R.drawable.blue, getResources().getString(R.string.eiffel_65_website)));
+        artists.add(new Artist(getResources().getString(R.string.muse), R.drawable.muse, getResources().getString(R.string.muse_website)));
 
         // The adapter knows how to create list items for each item in the list.
         final ArtistAdapter adapter = new ArtistAdapter(this, artists);
 
         GridView gridView = findViewById(R.id.gridview);
-
         gridView.setAdapter(adapter);
-
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            Intent i = new Intent(Intent.ACTION_VIEW);
 
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                // Release the media player if it currently exists because we are about to
-                // play a different sound file
+                // opening a website about the current artist
+                Artist artist = artists.get(position);
+                String url = artist.getArtistWebsite();
+                Intent websiteIntent = new Intent(Intent.ACTION_VIEW);
+                websiteIntent.setData(Uri.parse(url));
+                startActivity(websiteIntent);
 
-                if (artists.get(0) == artists.get(position)) {
-                    String url = "https://rateyourmusic.com/artist/rafaga";
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-                }
-                if (artists.get(1) == artists.get(position)) {
-                    String url = "https://rateyourmusic.com/artist/lp-1";
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-
-                }
-                if (artists.get(2) == artists.get(position)) {
-                    String url = "https://rateyourmusic.com/artist/tove-lo";
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-
-                }
-                if (artists.get(3) == artists.get(position)) {
-                    String url = "https://rateyourmusic.com/artist/alt_j";
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-
-                }
-                if (artists.get(4) == artists.get(position)) {
-                    String url = "https://rateyourmusic.com/artist/green-day-1";
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-
-                }
-                if (artists.get(5) == artists.get(position)) {
-                    String url = "https://rateyourmusic.com/artist/george-baker-selection";
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-
-                }
-                if (artists.get(6) == artists.get(position)) {
-                    String url = "https://rateyourmusic.com/artist/borns";
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-
-                }
-                if (artists.get(7) == artists.get(position)) {
-                    String url = "https://rateyourmusic.com/artist/the-weeknd";
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-
-                }
-                if (artists.get(8) == artists.get(position)) {
-                    String url = "https://rateyourmusic.com/artist/passion-pit";
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-
-                }
-                if (artists.get(9) == artists.get(position)) {
-                    String url = "https://rateyourmusic.com/artist/eurythmics";
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-
-                }
-                if (artists.get(10) == artists.get(position)) {
-                    String url = "https://rateyourmusic.com/artist/coldplay";
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-
-                }
-                if (artists.get(11) == artists.get(position)) {
-                    String url = "https://rateyourmusic.com/artist/charli-xcx";
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-                }
-
-                if (artists.get(12) == artists.get(position)) {
-                    String url = "https://www.youtube.com/watch?v=hG4CA33h2q4";
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-                }
-
-                if (artists.get(13) == artists.get(position)) {
-                    String url = "https://rateyourmusic.com/artist/eiffel-65";
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-                }
-
-                if (artists.get(14) == artists.get(position)) {
-                    String url = "https://rateyourmusic.com/artist/muse";
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-                }
 
             }
         });

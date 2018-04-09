@@ -44,10 +44,8 @@ public class SongAdapter extends ArrayAdapter<Song> {
             //Setting the album image
             ImageView imgView = listItemView.findViewById(R.id.image_view);
             imgView.setImageResource(currentSong.getImageResourceId());
-
         }
+
         return listItemView;
-
-
     }
 }

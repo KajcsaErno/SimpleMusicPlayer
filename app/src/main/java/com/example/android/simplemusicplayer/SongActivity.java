@@ -2,7 +2,6 @@ package com.example.android.simplemusicplayer;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -27,12 +26,9 @@ public class SongActivity extends AppCompatActivity {
     private TextView mFooterTextView;
     private ListView mListView;
     private Song selectedSong = null;
-    private Song selectedArtist = null;
-    private Song selectedImage = null;
-
     //Handles audio focus when playing a sound file
     private AudioManager mAudioManager;
-
+    private View previousView;
 
     //This listener gets triggered whenever the audio focus changes (i.e., we gain or lose audio focus because of another app or device).
 
@@ -62,6 +58,9 @@ public class SongActivity extends AppCompatActivity {
         public void onCompletion(MediaPlayer mediaPlayer) {
             // Now that the sound file has finished playing, release the media player resources.
             releaseMediaPlayer();
+            mFooterPlayIcon.setImageResource(R.drawable.ic_play_arrow_white_36dp);
+            mListView.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+
         }
     };
 
@@ -82,14 +81,13 @@ public class SongActivity extends AppCompatActivity {
         mFooterImage = findViewById(R.id.footer_image_view);
         mFooterTextView = findViewById(R.id.footer_text_view);
 
-        LinearLayout mLinearLayout = findViewById(R.id.footer_container);
+        final LinearLayout mLinearLayout = findViewById(R.id.footer_container);
 
         ImageView mFooterSkipPreviousIcon = findViewById(R.id.footer_skip_previous_icon);
         mFooterPlayIcon = findViewById(R.id.footer_play_icon);
         final ImageView mFooterSkipeNextIcon = findViewById(R.id.footer_skip_next_icon);
 
         mListView = findViewById(R.id.list);
-
 
         // Create a list of songs
         final ArrayList<Song> songs = new ArrayList<>();
@@ -116,15 +114,10 @@ public class SongActivity extends AppCompatActivity {
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-
                 // getting the positions for the following objects
                 selectedSong = songs.get(i);
-                selectedArtist = songs.get(i);
-                selectedImage = songs.get(i);
-
                 openNowPlayingActivity();
-
-                return false;
+                return true;
             }
         });
 
@@ -153,28 +146,47 @@ public class SongActivity extends AppCompatActivity {
                     mFooterPlayIcon.setImageResource(R.drawable.ic_pause_white_36dp);
 
                     //changing the background color when a music is selected
-                    mListView.setBackgroundColor(Color.parseColor("#00FF00"));
+                    mListView.setBackgroundColor(getResources().getColor(R.color.myGrey));
 
-                    //starting Text Scrolling Effect
+                    if (previousView == null) {
+                        previousView = view;
+                        changeColor(R.color.myBlue, view);
+                    } else {
+                        changeColor(R.color.white, previousView);
+                        changeColor(R.color.myBlue, view);
+                        previousView = view;
+                    }
+
+/*
+                    if(previousView ==  null){
+                        previousView = view;
+                        songName = view.findViewById(R.id.song_name);
+                        artistName = view.findViewById(R.id.artist_name);
+                        songName.setTextColor(getResources().getColor(R.color.myBlue));
+                        artistName.setTextColor(getResources().getColor(R.color.myBlue));
+                    } else {
+                        songName = previousView.findViewById(R.id.song_name);
+                        artistName = previousView.findViewById(R.id.artist_name);
+                        songName.setTextColor(getResources().getColor(R.color.white));
+                        artistName.setTextColor(getResources().getColor(R.color.white));
+                        songName = view.findViewById(R.id.song_name);
+                        artistName = view.findViewById(R.id.artist_name);
+                        songName.setTextColor(getResources().getColor(R.color.myBlue));
+                        artistName.setTextColor(getResources().getColor(R.color.myBlue));
+                        previousView = view;
+                    }
+*/
+                    //scrolling text animation start
                     mFooterTextView.setSelected(true);
 
                     //updating the footer image view and text view when user selects a item from the list
-                    mFooterImage.setImageResource(songs.get(position).getImageResourceId());
-                    mFooterTextView.setText(String.format("%s - %s", songs.get(position).getArtistName(), songs.get(position).getSongName()));
-
+                    mFooterImage.setImageResource(song.getImageResourceId());
+                    mFooterTextView.setText(String.format("%s - %s", song.getArtistName(), song.getSongName()));
                     // getting the positions for the following objects
-                    selectedSong = songs.get(position);
-                    selectedArtist = songs.get(position);
-                    selectedImage = songs.get(position);
-
+                    selectedSong = song;
                 }
-
-
             }
-
-
         });
-
 
         mFooterPlayIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,14 +194,12 @@ public class SongActivity extends AppCompatActivity {
                 if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
                     mMediaPlayer.pause();
                     mFooterPlayIcon.setImageResource(R.drawable.ic_play_arrow_white_36dp);
-                    mListView.setBackgroundColor(Color.parseColor("#4E342E"));
-
-
+                    mListView.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 } else {
                     if (mMediaPlayer != null) {
                         mMediaPlayer.start();
                         mFooterPlayIcon.setImageResource(R.drawable.ic_pause_white_36dp);
-                        mListView.setBackgroundColor(Color.parseColor("#00FF00"));
+                        mListView.setBackgroundColor(getResources().getColor(R.color.myGrey));
                     }
                 }
             }
@@ -198,7 +208,7 @@ public class SongActivity extends AppCompatActivity {
         mFooterSkipPreviousIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(SongActivity.this, "Skips to the previous song... ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SongActivity.this, R.string.previous, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -222,7 +232,7 @@ public class SongActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // mMediaPlayer.setNextMediaPlayer();
-                Toast.makeText(SongActivity.this, "Skips to the next song...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SongActivity.this, R.string.next, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -252,25 +262,24 @@ public class SongActivity extends AppCompatActivity {
                 }
             });
         }
+    }
 
+    private void changeColor(int resId, View view) {
 
+        ((TextView) view.findViewById(R.id.song_name)).setTextColor(getResources().getColor(resId));
+       /* TextView textView = view.findViewById(R.id.song_name);
+        textView.setTextColor(getResources().getColor(resId));*/
+        ((TextView) view.findViewById(R.id.artist_name)).setTextColor(getResources().getColor(resId));
     }
 
     public void openNowPlayingActivity() {
-        if (selectedSong != null && selectedArtist != null) {
+        if (selectedSong != null) {
             Intent openActivity = new Intent(SongActivity.this, NowPlayingActivity.class);
             openActivity.putExtra("songName", selectedSong.getSongName());
-            openActivity.putExtra("artistName", selectedArtist.getArtistName());
-            openActivity.putExtra("songImage", selectedImage.getImageResourceId());
+            openActivity.putExtra("artistName", selectedSong.getArtistName());
+            openActivity.putExtra("songImage", selectedSong.getImageResourceId());
             startActivity(openActivity);
         }
-    }
-
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        releaseMediaPlayer();
     }
 
     private void releaseMediaPlayer() {

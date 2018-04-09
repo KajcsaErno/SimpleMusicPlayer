@@ -7,7 +7,7 @@
     <string name="songs">Songs</string>
     <string name="albums">Albums</string>
     <string name="music_app">Music App</string>
-    <string name="mentirosa">Mentirosa - Ráfaga</string>
+    <string name="mentirosa">Mentirosa</string>
     <string name="now_playing">Now Playing</string>
     <string name="artists">Artists</string>
     <string name="_0">0</string>
@@ -35,7 +35,7 @@
     <string name="borns">BØRNS</string>
     <string name="the_weeken">The Weeknd</string>
     <string name="passion_pit">Passion Pit</string>
-    <string name="x_man">X Men Apocalypse Quicksilver Theme Artist()</string>
+    <string name="x_man">X Men Apocalypse Quicksilver Theme</string>
     <string name="coldplay">Coldplay</string>
     <string name="charli_xcx">Charli XCX</string>
     <string name="epic_sax_guy">Epic Sax Guy</string>
@@ -55,5 +55,22 @@
     <string name="gandalf_sax">Gandalf Sax</string>
     <string name="blue">Blue</string>
     <string name="the_handler">The Handler</string>
+    <string name="rafaga_website">https://rateyourmusic.com/artist/rafaga</string>
+    <string name="next">Skips to the next song...</string>
+    <string name="previous">Skips to the previous song...</string>
+    <string name="lp_website">https://rateyourmusic.com/artist/lp-1</string>
+    <string name="tove_lo_website">https://rateyourmusic.com/artist/tove-lo</string>
+    <string name="altJ_websiite">https://rateyourmusic.com/artist/alt_j</string>
+    <string name="green_day_website">https://rateyourmusic.com/artist/green-day-1</string>
+    <string name="george_baker_website">https://rateyourmusic.com/artist/george-baker-selection</string>
+    <string name="borns_website">https://rateyourmusic.com/artist/borns</string>
+    <string name="the_weeken_website">https://rateyourmusic.com/artist/the-weeknd</string>
+    <string name="passion_pit_website">https://rateyourmusic.com/artist/passion-pit</string>
+    <string name="eurythmics_website">https://rateyourmusic.com/artist/eurythmics</string>
+    <string name="coldplay_website">https://rateyourmusic.com/artist/coldplay</string>
+    <string name="charlie_xcx_website">https://rateyourmusic.com/artist/charli-xcx</string>
+    <string name="gandalf_website">https://www.youtube.com/watch?v=hG4CA33h2q4</string>
+    <string name="eiffel_65_website">https://rateyourmusic.com/artist/eiffel-65</string>
+    <string name="muse_website">https://rateyourmusic.com/artist/muse</string>
 
 </resources>

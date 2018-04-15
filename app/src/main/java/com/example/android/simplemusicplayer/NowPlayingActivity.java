@@ -97,8 +97,6 @@ public class NowPlayingActivity extends AppCompatActivity {
 
                 if (SongActivity.mMediaPlayer != null && SongActivity.mMediaPlayer.isPlaying()) {
                     SongActivity.mMediaPlayer.pause();
-
-                    Toast.makeText(getApplicationContext(), "Pausing sound...", Toast.LENGTH_SHORT).show();
                     playIcon.setImageResource(R.drawable.ic_play_arrow_white_36dp);
 
 
@@ -106,7 +104,6 @@ public class NowPlayingActivity extends AppCompatActivity {
                     if (SongActivity.mMediaPlayer != null) {
 
                         SongActivity.mMediaPlayer.start();
-                        Toast.makeText(getApplicationContext(), "Playing sound...", Toast.LENGTH_SHORT).show();
                         playIcon.setImageResource(R.drawable.ic_pause_white_36dp);
 
                     }
@@ -128,7 +125,6 @@ public class NowPlayingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (audioManager != null) {
-                    Toast.makeText(getApplicationContext(), "Increasing the volume...", Toast.LENGTH_SHORT).show();
                     audioManager.adjustVolume(AudioManager.ADJUST_RAISE, AudioManager.FLAG_PLAY_SOUND);
                 }
             }
@@ -138,7 +134,6 @@ public class NowPlayingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (audioManager != null) {
-                    Toast.makeText(getApplicationContext(), "Decreasing the volume...", Toast.LENGTH_SHORT).show();
                     audioManager.adjustVolume(AudioManager.ADJUST_LOWER, AudioManager.FLAG_PLAY_SOUND);
                 }
             }

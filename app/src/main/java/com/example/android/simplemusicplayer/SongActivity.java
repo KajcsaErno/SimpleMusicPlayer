@@ -29,6 +29,10 @@ public class SongActivity extends AppCompatActivity {
     //Handles audio focus when playing a sound file
     private AudioManager mAudioManager;
     private View previousView;
+    private int myIndex = -1;
+    private ArrayList<Song> songs = new ArrayList<>();
+    private Song song;
+
 
     //This listener gets triggered whenever the audio focus changes (i.e., we gain or lose audio focus because of another app or device).
 
@@ -38,17 +42,22 @@ public class SongActivity extends AppCompatActivity {
             if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
                 // The AUDIOFOCUS_LOSS_TRANSIENT case means that we've lost audio focus for a short amount of time.
                 // The AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK case means that our app is allowed to continue playing sound but at a lower volume.
-                mMediaPlayer.pause();
-
+                if (mMediaPlayer.isPlaying()) {
+                    mMediaPlayer.pause();
+                }
             } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
-                mMediaPlayer.setVolume(4, 4);
-
+                if (mMediaPlayer.isPlaying()) {
+                    mMediaPlayer.setVolume(0.1f, 0.1f);
+                }
             } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
-                // The AUDIOFOCUS_GAIN case means we have regained focus and can resume playback.
-                mMediaPlayer.start();
+                if (mMediaPlayer == null)
+                    // The AUDIOFOCUS_GAIN case means we have regained focus and can resume playback.
+                    mMediaPlayer.start();
             } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
                 // The AUDIOFOCUS_LOSS case means we've lost audio focus and Stop playback and clean up resources
+                if (mMediaPlayer.isPlaying()) mMediaPlayer.stop();
                 releaseMediaPlayer();
+                mMediaPlayer = null;
             }
         }
     };
@@ -90,7 +99,8 @@ public class SongActivity extends AppCompatActivity {
         mListView = findViewById(R.id.list);
 
         // Create a list of songs
-        final ArrayList<Song> songs = new ArrayList<>();
+
+        songs = new ArrayList<>();
         songs.add(new Song(getResources().getString(R.string.mentirosa), getResources().getString(R.string.rafaga), R.drawable.rafaga, R.raw.rafaga_mentirosa));
         songs.add(new Song(getResources().getString(R.string.lost_on_you), getResources().getString(R.string.lp), R.drawable.lp, R.raw.lost_on_you));
         songs.add(new Song(getResources().getString(R.string.stay_high), getResources().getString(R.string.tove_lo), R.drawable.stay_high, R.raw.stay_high));
@@ -99,6 +109,7 @@ public class SongActivity extends AppCompatActivity {
         songs.add(new Song(getResources().getString(R.string.little_green_bag), getResources().getString(R.string.geoge_baker), R.drawable.little_green_bag, R.raw.little_green_bag));
         songs.add(new Song(getResources().getString(R.string.american_money), getResources().getString(R.string.borns), R.drawable.american_money, R.raw.american_money));
         songs.add(new Song(getResources().getString(R.string.false_alarm), getResources().getString(R.string.the_weeken), R.drawable.false_alarm, R.raw.false_alarm));
+
         songs.add(new Song(getResources().getString(R.string.lifted_up), getResources().getString(R.string.lifted_up), R.drawable.lifted_up, R.raw.lifted_up));
         songs.add(new Song(getResources().getString(R.string.sweet_dream), getResources().getString(R.string.x_man), R.drawable.sweet_dreams, R.raw.sweet_dreams));
         songs.add(new Song(getResources().getString(R.string.a_sky_full_of_starts), getResources().getString(R.string.coldplay), R.drawable.sky_full_of_stars, R.raw.sky_full_of_stars));
@@ -128,7 +139,7 @@ public class SongActivity extends AppCompatActivity {
                 // Release the media player if it currently exists because we are about to  play a different sound file
                 releaseMediaPlayer();
 
-                Song song = songs.get(position);
+                song = songs.get(position);
                 int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
                 if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                     // We have audio focus now.
@@ -148,6 +159,7 @@ public class SongActivity extends AppCompatActivity {
                     //changing the background color when a music is selected
                     mListView.setBackgroundColor(getResources().getColor(R.color.myGrey));
 
+                    //changing the color of the textViews when the user selects a song from the list
                     if (previousView == null) {
                         previousView = view;
                         changeColor(R.color.myBlue, view);
@@ -157,33 +169,15 @@ public class SongActivity extends AppCompatActivity {
                         previousView = view;
                     }
 
-/*
-                    if(previousView ==  null){
-                        previousView = view;
-                        songName = view.findViewById(R.id.song_name);
-                        artistName = view.findViewById(R.id.artist_name);
-                        songName.setTextColor(getResources().getColor(R.color.myBlue));
-                        artistName.setTextColor(getResources().getColor(R.color.myBlue));
-                    } else {
-                        songName = previousView.findViewById(R.id.song_name);
-                        artistName = previousView.findViewById(R.id.artist_name);
-                        songName.setTextColor(getResources().getColor(R.color.white));
-                        artistName.setTextColor(getResources().getColor(R.color.white));
-                        songName = view.findViewById(R.id.song_name);
-                        artistName = view.findViewById(R.id.artist_name);
-                        songName.setTextColor(getResources().getColor(R.color.myBlue));
-                        artistName.setTextColor(getResources().getColor(R.color.myBlue));
-                        previousView = view;
-                    }
-*/
                     //scrolling text animation start
                     mFooterTextView.setSelected(true);
 
                     //updating the footer image view and text view when user selects a item from the list
                     mFooterImage.setImageResource(song.getImageResourceId());
                     mFooterTextView.setText(String.format("%s - %s", song.getArtistName(), song.getSongName()));
-                    // getting the positions for the following objects
-                    selectedSong = song;
+
+                    // getting the positions for the following object
+                    //selectedSong = song;
                 }
             }
         });
@@ -224,14 +218,13 @@ public class SongActivity extends AppCompatActivity {
                         mMediaPlayer.seekTo(skips);
                     }
                 }
-                return false;
+                return true;
             }
         });
 
         mFooterSkipeNextIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // mMediaPlayer.setNextMediaPlayer();
                 Toast.makeText(SongActivity.this, R.string.next, Toast.LENGTH_SHORT).show();
 
             }
@@ -249,7 +242,7 @@ public class SongActivity extends AppCompatActivity {
                         mMediaPlayer.seekTo(skips);
                     }
                 }
-                return false;
+                return true;
             }
 
         });
@@ -264,12 +257,26 @@ public class SongActivity extends AppCompatActivity {
         }
     }
 
-    private void changeColor(int resId, View view) {
+    private void playNextSong() {
+//        if (myIndex < songs.size()) {
+//            myIndex++;
+//            mAudioManager = songs.get(myIndex);
+//        } else if (myIndex == songs.size() || myIndex > songs.size()) {
+//            myIndex = 0;
+//        }
 
+//        if (myIndex == songs.size() - 1) {
+//            //if last in playlist
+//            myIndex =0;
+//            mAudioManager = songs.get(myIndex);
+//        }
+
+    }
+
+    private void changeColor(int resId, View view) {
         ((TextView) view.findViewById(R.id.song_name)).setTextColor(getResources().getColor(resId));
-       /* TextView textView = view.findViewById(R.id.song_name);
-        textView.setTextColor(getResources().getColor(resId));*/
         ((TextView) view.findViewById(R.id.artist_name)).setTextColor(getResources().getColor(resId));
+
     }
 
     public void openNowPlayingActivity() {
@@ -277,7 +284,6 @@ public class SongActivity extends AppCompatActivity {
             Intent openActivity = new Intent(SongActivity.this, NowPlayingActivity.class);
             openActivity.putExtra("songName", selectedSong.getSongName());
             openActivity.putExtra("artistName", selectedSong.getArtistName());
-            openActivity.putExtra("songImage", selectedSong.getImageResourceId());
             startActivity(openActivity);
         }
     }

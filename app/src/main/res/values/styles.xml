@@ -78,6 +78,7 @@
         <item name="android:ellipsize">end</item>
         <item name="android:shadowColor">@color/colorPrimaryDark</item>
         <item name="android:layout_marginTop">@dimen/text_view_small_padding</item>
+        <item name="android:layout_marginBottom">@dimen/text_view_small_padding</item>
         <item name="android:singleLine">true</item>
         <item name="android:textAppearance">?android:textAppearanceMedium</item>
         <item name="android:textStyle">bold</item>

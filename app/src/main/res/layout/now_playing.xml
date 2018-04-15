@@ -103,7 +103,7 @@
             android:id="@+id/play_icon"
             style="@style/now_playing_control_buttons"
             android:contentDescription="@string/play"
-            android:src="@drawable/ic_play_arrow_white_36dp" />
+            android:src="@drawable/ic_pause_white_36dp" />
 
         <ImageView
             android:id="@+id/fast_forward_icon"

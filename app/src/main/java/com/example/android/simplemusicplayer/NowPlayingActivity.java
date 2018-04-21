@@ -35,9 +35,7 @@ public class NowPlayingActivity extends AppCompatActivity {
             songName = bundle.getString("songName");
             artistName = bundle.getString("artistName");
             songImage = bundle.getInt("songImage");
-
         }
-
 
         TextView mNowPlayingSong = findViewById(R.id.now_playing_song);
         TextView mNowPlayingArtist = findViewById(R.id.now_playing_artist);

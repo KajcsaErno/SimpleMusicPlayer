@@ -16,7 +16,6 @@ public class SongAdapter extends ArrayAdapter<Song> {
 
     SongAdapter(Activity context, ArrayList<Song> songs) {
         super(context, 0, songs);
-
     }
 
     @NonNull
@@ -29,6 +28,7 @@ public class SongAdapter extends ArrayAdapter<Song> {
                     R.layout.list_item, parent, false);
         }
 
+
         //getting the position for the current song
         Song currentSong = getItem(position);
 
@@ -37,6 +37,7 @@ public class SongAdapter extends ArrayAdapter<Song> {
             TextView songTextView = listItemView.findViewById(R.id.song_name);
             songTextView.setText(currentSong.getSongName());
 
+
             //Setting the artist name
             TextView artistTextView = listItemView.findViewById(R.id.artist_name);
             artistTextView.setText(currentSong.getArtistName());
@@ -44,8 +45,17 @@ public class SongAdapter extends ArrayAdapter<Song> {
             //Setting the album image
             ImageView imgView = listItemView.findViewById(R.id.image_view);
             imgView.setImageResource(currentSong.getImageResourceId());
-        }
 
+            if (convertView != null) {
+                songTextView.setTextColor(getContext().getResources().getColor(R.color.white));
+                artistTextView.setTextColor(getContext().getResources().getColor(R.color.white));
+
+            }
+
+        }
         return listItemView;
+
+
     }
+
 }

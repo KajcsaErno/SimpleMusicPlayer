@@ -29,9 +29,9 @@ public class SongActivity extends AppCompatActivity {
     //Handles audio focus when playing a sound file
     private AudioManager mAudioManager;
     private View previousView;
-    private int myIndex = -1;
-    private ArrayList<Song> songs = new ArrayList<>();
-    private Song song;
+    private int currentPlayingSong = 0;
+    private ArrayList<Song> songsList = new ArrayList<>();
+    private Song songPosition;
 
 
     //This listener gets triggered whenever the audio focus changes (i.e., we gain or lose audio focus because of another app or device).
@@ -90,7 +90,7 @@ public class SongActivity extends AppCompatActivity {
         mFooterImage = findViewById(R.id.footer_image_view);
         mFooterTextView = findViewById(R.id.footer_text_view);
 
-        final LinearLayout mLinearLayout = findViewById(R.id.footer_container);
+        LinearLayout mLinearLayout = findViewById(R.id.footer_container);
 
         ImageView mFooterSkipPreviousIcon = findViewById(R.id.footer_skip_previous_icon);
         mFooterPlayIcon = findViewById(R.id.footer_play_icon);
@@ -98,35 +98,34 @@ public class SongActivity extends AppCompatActivity {
 
         mListView = findViewById(R.id.list);
 
-        // Create a list of songs
+        // Create a list of songsList
 
-        songs = new ArrayList<>();
-        songs.add(new Song(getResources().getString(R.string.mentirosa), getResources().getString(R.string.rafaga), R.drawable.rafaga, R.raw.rafaga_mentirosa));
-        songs.add(new Song(getResources().getString(R.string.lost_on_you), getResources().getString(R.string.lp), R.drawable.lp, R.raw.lost_on_you));
-        songs.add(new Song(getResources().getString(R.string.stay_high), getResources().getString(R.string.tove_lo), R.drawable.stay_high, R.raw.stay_high));
-        songs.add(new Song(getResources().getString(R.string.something_good), getResources().getString(R.string.altJ), R.drawable.alt_j, R.raw.something_good));
-        songs.add(new Song(getResources().getString(R.string.bulevard), getResources().getString(R.string.green_day), R.drawable.greenday, R.raw.boulevard_of_broken_dreams));
-        songs.add(new Song(getResources().getString(R.string.little_green_bag), getResources().getString(R.string.geoge_baker), R.drawable.little_green_bag, R.raw.little_green_bag));
-        songs.add(new Song(getResources().getString(R.string.american_money), getResources().getString(R.string.borns), R.drawable.american_money, R.raw.american_money));
-        songs.add(new Song(getResources().getString(R.string.false_alarm), getResources().getString(R.string.the_weeken), R.drawable.false_alarm, R.raw.false_alarm));
-
-        songs.add(new Song(getResources().getString(R.string.lifted_up), getResources().getString(R.string.lifted_up), R.drawable.lifted_up, R.raw.lifted_up));
-        songs.add(new Song(getResources().getString(R.string.sweet_dream), getResources().getString(R.string.x_man), R.drawable.sweet_dreams, R.raw.sweet_dreams));
-        songs.add(new Song(getResources().getString(R.string.a_sky_full_of_starts), getResources().getString(R.string.coldplay), R.drawable.sky_full_of_stars, R.raw.sky_full_of_stars));
-        songs.add(new Song(getResources().getString(R.string.break_the_rules), getResources().getString(R.string.charli_xcx), R.drawable.break_the_rules, R.raw.break_the_rules));
-        songs.add(new Song(getResources().getString(R.string.gandalf_sax), getResources().getString(R.string.epic_sax_guy), R.drawable.gandalf, R.raw.gandalf));
-        songs.add(new Song(getResources().getString(R.string.blue), getResources().getString(R.string.eiffel_65), R.drawable.blue, R.raw.eiffel_65_blue_kny_factory_remix));
-        songs.add(new Song(getResources().getString(R.string.the_handler), getResources().getString(R.string.muse), R.drawable.muse, R.raw.muse_the_handler));
+        songsList = new ArrayList<>();
+        songsList.add(new Song(getResources().getString(R.string.mentirosa), getResources().getString(R.string.rafaga), R.drawable.rafaga, R.raw.rafaga_mentirosa));
+        songsList.add(new Song(getResources().getString(R.string.lost_on_you), getResources().getString(R.string.lp), R.drawable.lp, R.raw.lost_on_you));
+        songsList.add(new Song(getResources().getString(R.string.stay_high), getResources().getString(R.string.tove_lo), R.drawable.stay_high, R.raw.stay_high));
+        songsList.add(new Song(getResources().getString(R.string.something_good), getResources().getString(R.string.altJ), R.drawable.alt_j, R.raw.something_good));
+        songsList.add(new Song(getResources().getString(R.string.bulevard), getResources().getString(R.string.green_day), R.drawable.greenday, R.raw.boulevard_of_broken_dreams));
+        songsList.add(new Song(getResources().getString(R.string.little_green_bag), getResources().getString(R.string.geoge_baker), R.drawable.little_green_bag, R.raw.little_green_bag));
+        songsList.add(new Song(getResources().getString(R.string.american_money), getResources().getString(R.string.borns), R.drawable.american_money, R.raw.american_money));
+        songsList.add(new Song(getResources().getString(R.string.false_alarm), getResources().getString(R.string.the_weeken), R.drawable.false_alarm, R.raw.false_alarm));
+        songsList.add(new Song(getResources().getString(R.string.lifted_up), getResources().getString(R.string.lifted_up), R.drawable.lifted_up, R.raw.lifted_up));
+        songsList.add(new Song(getResources().getString(R.string.sweet_dream), getResources().getString(R.string.x_man), R.drawable.sweet_dreams, R.raw.sweet_dreams));
+        songsList.add(new Song(getResources().getString(R.string.a_sky_full_of_starts), getResources().getString(R.string.coldplay), R.drawable.sky_full_of_stars, R.raw.sky_full_of_stars));
+        songsList.add(new Song(getResources().getString(R.string.break_the_rules), getResources().getString(R.string.charli_xcx), R.drawable.break_the_rules, R.raw.break_the_rules));
+        songsList.add(new Song(getResources().getString(R.string.gandalf_sax), getResources().getString(R.string.epic_sax_guy), R.drawable.gandalf, R.raw.gandalf));
+        songsList.add(new Song(getResources().getString(R.string.blue), getResources().getString(R.string.eiffel_65), R.drawable.blue, R.raw.eiffel_65_blue_kny_factory_remix));
+        songsList.add(new Song(getResources().getString(R.string.the_handler), getResources().getString(R.string.muse), R.drawable.muse, R.raw.muse_the_handler));
 
         // The adapter knows how to create list items for each item in the list.
-        final SongAdapter adapter = new SongAdapter(this, songs);
+        final SongAdapter adapter = new SongAdapter(this, songsList);
 
         mListView.setAdapter(adapter);
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 // getting the positions for the following objects
-                selectedSong = songs.get(i);
+                selectedSong = songsList.get(i);
                 openNowPlayingActivity();
                 return true;
             }
@@ -139,13 +138,13 @@ public class SongActivity extends AppCompatActivity {
                 // Release the media player if it currently exists because we are about to  play a different sound file
                 releaseMediaPlayer();
 
-                song = songs.get(position);
+                songPosition = songsList.get(position);
                 int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
                 if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                     // We have audio focus now.
                     // Create and setup the {@link MediaPlayer} for the audio resource associated
                     // with the current word
-                    mMediaPlayer = MediaPlayer.create(SongActivity.this, song.getSoundResourceId());
+                    mMediaPlayer = MediaPlayer.create(SongActivity.this, songPosition.getSoundResourceId());
 
                     // Start the audio file
                     mMediaPlayer.start();
@@ -159,7 +158,7 @@ public class SongActivity extends AppCompatActivity {
                     //changing the background color when a music is selected
                     mListView.setBackgroundColor(getResources().getColor(R.color.myGrey));
 
-                    //changing the color of the textViews when the user selects a song from the list
+                    //changing the color of the textViews when the user selects a songPosition from the list
                     if (previousView == null) {
                         previousView = view;
                         changeColor(R.color.myBlue, view);
@@ -173,11 +172,11 @@ public class SongActivity extends AppCompatActivity {
                     mFooterTextView.setSelected(true);
 
                     //updating the footer image view and text view when user selects a item from the list
-                    mFooterImage.setImageResource(song.getImageResourceId());
-                    mFooterTextView.setText(String.format("%s - %s", song.getArtistName(), song.getSongName()));
+                    mFooterImage.setImageResource(songPosition.getImageResourceId());
+                    mFooterTextView.setText(String.format("%s - %s", songPosition.getArtistName(), songPosition.getSongName()));
 
                     // getting the positions for the following object
-                    //selectedSong = song;
+                    //selectedSong = songPosition;
                 }
             }
         });
@@ -226,7 +225,18 @@ public class SongActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(SongActivity.this, R.string.next, Toast.LENGTH_SHORT).show();
+           /*     if (mMediaPlayer != null) {
+                    mMediaPlayer.stop();
+                    releaseMediaPlayer();
+                    playNextSong();
+                    try {
+                        mMediaPlayer.prepare();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    mMediaPlayer.start();
 
+                }*/
             }
         });
 
@@ -256,19 +266,20 @@ public class SongActivity extends AppCompatActivity {
             });
         }
     }
-
     private void playNextSong() {
-//        if (myIndex < songs.size()) {
-//            myIndex++;
-//            mAudioManager = songs.get(myIndex);
-//        } else if (myIndex == songs.size() || myIndex > songs.size()) {
-//            myIndex = 0;
-//        }
+        if (currentPlayingSong < songsList.size()) {
+            currentPlayingSong++;
+            // mMediaPlayer.setDataSource(songsList.get(currentPlayingSong));
+            //mAudioManager = songsList.get(myIndex);
+        }
+        if (currentPlayingSong >= songsList.size()) {
+            currentPlayingSong = 0;
+        }
 
-//        if (myIndex == songs.size() - 1) {
+//        if (myIndex == songsList.size() - 1) {
 //            //if last in playlist
 //            myIndex =0;
-//            mAudioManager = songs.get(myIndex);
+//            mAudioManager = songsList.get(myIndex);
 //        }
 
     }
@@ -284,6 +295,7 @@ public class SongActivity extends AppCompatActivity {
             Intent openActivity = new Intent(SongActivity.this, NowPlayingActivity.class);
             openActivity.putExtra("songName", selectedSong.getSongName());
             openActivity.putExtra("artistName", selectedSong.getArtistName());
+            openActivity.putExtra("songImage", selectedSong.getImageResourceId());
             startActivity(openActivity);
         }
     }
